@@ -1,0 +1,96 @@
+<form class="formProyectos">
+  <div class="contentForm">
+    <!--Aqui estan las tareas y los proyectos-->
+    <div class="contT">
+      <!--Para agregar tareas-->
+      <div class="contTarea">
+        <div class="contTarea1">
+          <label for="NombreTarea">Nombre De la Tarea: </label>
+          <input
+            type="text"
+            id="NombreTarea"
+            name="NombreTarea"
+            input=" Nombre del Tarea"
+            [(ngModel)]="tarea.nomTarea"
+            class="form_input"
+          />
+          <label for="Descripcion">Descripcion: </label>
+          <input
+            type="text"
+            id="Descripcion"
+            name="Descripcion"
+            input="Descripcion"
+            [(ngModel)]="tarea.descripcion"
+            class="form_input"
+          />
+
+          <label for="Materiales">Material:</label>
+          <input
+            type="text"
+            id="Materiales"
+            [(ngModel)]="newMaterial"
+            name="newMaterial"
+          />
+          <button type="button" class="btn btn-primary" (click)="addMaterial()">
+            Añadir Material
+          </button>
+
+          <!-- Lista de materiales añadidos -->
+          <div class="materiales-lista">
+            <h4>Materiales Añadidos:</h4>
+            <ul class="list-group">
+              <li
+                *ngFor="let material of tarea.Materiales"
+                class="list-group-item"
+              >
+                {{ material.Material }}
+              </li>
+            </ul>
+          </div>
+
+          <select
+            id="PersonaEncarga"
+            name="Persona Encargada"
+            [(ngModel)]="tarea.idColaboradores"
+          >
+            <option value="opcion1">Persona encargada</option>
+           <!-- <option
+              *ngFor="let user of proyects.PersonasInvolucradas"
+              value="{{ user.NombrePersonasInvolucradas }}"
+            >
+              {{ user.NombrePersonasInvolucradas}}
+            </option>
+-->
+          </select>
+          <div class="contTareasFechas">
+            <div class="contTareasFechas1">
+              <label for="FechaInicioP">Fecha de Inicio: </label>
+              <input
+                type="date"
+                id="FechaInicioP"
+                name="Fecha de Inicio"
+                input="Fecha de Inicio"
+                class="form_input"
+                [(ngModel)]="tarea.fechaI"
+              />
+            </div>
+            <div class="contTareasFechas1">
+              <label for="FechaFinalP">Fecha Final: </label>
+              <input
+                type="date"
+                id="FechaFinalP"
+                name="Fecha Final"
+                input="Fecha Final"
+                class="form_input"
+                [(ngModel)]="tarea.fechaF"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="submit-button" (click)="saveNewTarea()">
+    Subir tarea
+  </button>
+</form>

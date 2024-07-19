@@ -1,0 +1,221 @@
+.bodyT{
+    width: auto;
+    font-family: sans-serif;
+}
+/*Divicion entre tareas y progreso*/
+.containerTa{
+    display: flex;
+    gap: 3%;
+
+}
+
+/*Container de donde van tareas*/
+.containerT{
+    width: 70%;
+    height: auto;
+
+}
+
+/*Container con tarea*/
+.container-Tarea{
+    background-image: url('../../../../assets/img/fondo-Tareas.jpg');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-position: 50% 50%;
+    color: white;
+    margin-bottom: 2%;
+}
+
+/*Container con la informacion de la tarea
+Organizacion de la informacion dentro de cada
+tarea*/
+.cont-Tarea-Info{
+    display: flex;
+    gap: 2%;
+    padding: 4%;
+}
+
+/*Container para movar cada parte de la info de la tarea*/
+/*Div1*/
+.container-Tarea-Div1{
+    width: 50%;
+}
+
+.container-Tarea-Div1 h2{
+    font-size: 1.1rem;
+}
+.container-Tarea-Div1 p{
+    font-size: 1em;
+}
+/*Div2*/
+.container-Tarea-Div2{
+    width: 27%;
+    
+}
+.container-Tarea-Div2 h2{
+    font-size: 1.1rem;
+
+}
+.container-Tarea-Div2 ul{
+    font-size: 0.9em;
+}
+
+/*Div3*/
+.container-Tarea-Div3{
+    width: 20%;
+}
+
+.container-Tarea-Div3 h2{
+    font-size: 1.1rem;
+    text-align: center;
+}
+.container-Tarea-Div3 p{
+    font-size: 0.8em;
+}
+
+/*Agregar tareas*/
+.add-task-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: #9ed48d; /* Ribbit Dark color */
+    color: white;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    margin: 20px auto; /* Centra el botón horizontalmente */
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+}
+/*Usuarios*/
+
+.users{
+    display: flex;
+    gap: 10%;
+    padding: 4%;
+}
+.users p{
+    font-size: 1em;
+}
+
+.users img{
+    height: 50px;
+    border-radius: 100%;
+}
+
+
+/*Progreso y colaboradores*/
+/*Container donde van colaboradoes y progreso*/
+.containerP{
+    width: 30%;
+    height: auto;
+}
+ /*Container donde el progreso*/
+.container-Pro{
+    background-color: #cfbba2a8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    width: 90%;
+}
+.cont-Pro-Info h3{
+    font-size: 1.3em;
+    color: white;
+}
+.cont-Pro-Info{
+    padding: 5% 0% 8% 30%;
+}
+
+
+/*Barra de progreso*/
+.progress-container {
+    width: 50px;
+    height: 300px;
+    background-color: #f3f3f3;
+    border-radius: 25px;
+    overflow: hidden;
+    position: relative;
+    
+}
+.progress-bar {
+    width: 100%;
+    height: 0;
+    background-color: #4caf50;
+    border-radius: 25px 25px 0 0;
+    position: absolute;
+    bottom: 0;
+    transition: height 0.5s ease;
+}
+.progress-text {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/*Colaboradores*/
+.container-Col{
+    background-color: #534c43a8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    width: 90%;
+    margin-top: 5%;
+}
+
+.cont-Col-Info{
+    padding: 1% 0% 4% 6%;
+}
+
+.usersCol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    
+}
+.usersCol img {
+    width: calc(20% - 10px); 
+    box-sizing: border-box; 
+    border-radius: 100%;
+}
+
+.cont-Col-Info h3{
+    font-size: 0.9em;
+    color: white;
+    text-align: center;
+}
+
+/*Proposito*/
+.container-Col-Pro{
+    background-color: #e9b570a8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    width: 90%;
+    margin-top: 5%;
+}
+.cont-Col-Info-Pro h3{
+    font-size: 1em;
+    color: white;
+    text-align: center;
+}
+
+.cont-Col-Info-Pro{
+    padding: 1% 0% 4% 6%;
+}
+
+.cont-Col-Info-Pro p{
+    font-size: 0.8em;
+}
+
+/*Calendario*/
+
+.container-Col-Cal{
+    border-radius: 10px;
+    width: 90%;
+}
+
+.container-Col-Cal img{
+    width: 100%;
+}

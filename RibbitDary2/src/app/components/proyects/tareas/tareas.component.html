@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tarea</title>
+  </head>
+  <body class="bodyT">
+    <h1>Tareas:</h1>
+
+    <div class="containerTa"  >
+      <div class="containerT">
+        <div class="container-Tarea" *ngFor="let tarea of tareas">
+          <div class="cont-Tarea-Info">
+            <div class="container-Tarea-Div1">
+              <h2>Tarea:</h2>
+              <p>{{tarea.nomTarea}}</p>
+              <h2>Fecha</h2>
+              <p>{{tarea.fechaI}}</p>
+              <h2>Descripcion</h2>
+              <p>{{tarea.descripcion}}</p>
+            </div>
+            <div class="container-Tarea-Div2">
+              <h2>Materiales</h2>
+              <li *ngFor = "let material of tarea.Materiales">
+                {{material.Material}}
+              </li>
+              <div>
+                <h2>Fecha de Fin:</h2>
+                <p>{{tarea.fechaF}}</p>
+              </div>
+            </div>
+            <div class="container-Tarea-Div3">
+              <div class="usersC">
+                <h2>Persona encargada:</h2>
+                <div class="users">
+                  <img [src]="" />
+                  <p>{{tarea.idColaboradores}}</p>
+                </div>
+              </div>
+              <div class="users">
+                <h2>Completado</h2>
+                <input type="checkbox" id="completed" name="completed" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="add-task-button" [routerLink]="['/crear-tareas', idP]">
+          +
+      </div>
+      
+      </div>
+
+      <div class="containerP">
+        <!-- Calendario 
+        <div class="container-Col-Cal">
+          <img src="../../../assets/img/Calendario-P.jpg" />
+        </div>
+      -->
+        <!-- Contenedor de Progreso 
+
+        <div class="container-Pro">
+          <div class="cont-Pro-Info">
+            <h3>Progreso:</h3>
+            <div class="progress-container">
+              <div class="progress-bar" id="progress-bar" [style.height.%]="proyects.Porcentaje"></div>
+              <div class="progress-text" id="progress-text">{{ proyects.progreso }}%</div>
+            </div>
+          </div>
+        </div>
+        -->
+      
+        <!-- Descripción del Proyecto -->
+        <div class="container-Col-Pro">
+          <div class="cont-Col-Info-Pro">
+            <div>
+              <h3>Descripción del proyecto:</h3>
+            </div>
+            <div class="usersCol">
+              <p>{{ proyects.descripcion }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- Notas del proyecto -->
+        <div class="container-Col-Pro">
+          <div class="cont-Col-Info-Pro">
+            <div>
+              <h3>Notas del proyecto:</h3>
+            </div>
+            <div class="usersCol">
+              <p>{{ proyects.notas }}</p>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Personas en el Proyecto -->
+        <div class="container-Col">
+          <div class="cont-Col-Info">
+            <div>
+              <h3>Personas en el proyecto:</h3>
+            </div>
+            <div class="usersCol">
+              <ng-container *ngFor="let user of proyects.PersonasInvolucradas">
+                <img [src]="user.IconUser" />
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </body>
+</html>

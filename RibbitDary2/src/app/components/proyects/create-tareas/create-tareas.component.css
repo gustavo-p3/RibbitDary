@@ -1,0 +1,151 @@
+.formProyectos{
+    width: 100%;
+    margin-top: 2%;
+    font-family: 'CascadiaMonoExtraLight', monospace;
+}
+ /*Contenido del formulario*/
+.contentForm{
+    display: flex;
+    margin-top: 2%;
+    width: 100%;
+    height: 100%;
+}
+
+.contT{
+    display: inline;
+    height: 50%;
+    width: 70%;
+   
+}
+
+.contT label{
+    font-size: 1.3em;
+    text-align: center;
+    margin-bottom: 1%;
+}
+.contT input{
+    background: white;
+    border: none;
+    color: #000000;
+    height: 40px;
+    font-size: .8em;
+    text-align: center;
+    margin-bottom: 1%;
+}
+
+
+
+.contT select{
+    background-color: #95d1f8ec;
+    border: none;
+    color: #000000;
+    height: 50px;
+    font-size: 1em;
+    text-align: center;
+    margin-bottom: 1%;
+
+}
+/*Contenido del proyecto*/
+
+.contTarea{
+    background-image: url('../../../../assets/img/fondo-Tareas.jpg');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    margin-bottom: 4%;
+    border-radius: 20px;
+}
+.contTarea1{
+    padding: 3%;
+    display: grid;
+    flex-direction: column;
+  
+}
+
+/*Contenido de las fechas*/
+.contTareasFechas{
+    display: flex;
+    gap: 50%;
+    margin-top: 10px;
+}
+
+.contTareasFechas1{
+    display: grid;
+    gap: 10%;
+}
+
+
+/*Boton subir tarea*/
+.submit-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #82c45d;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    height: 50px;
+    width: 160px;
+    font-family: 'CascadiaMonoExtraLight', monospace;
+  }
+
+  .submit-button:hover {
+    background-color: #28a7465e;
+  }
+
+
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .materiales-lista {
+    margin-top: 20px;
+  }
+  
+  .list-group {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .list-group-item {
+    background-color: #f3f3f3;
+    border: 1px solid #ddd;
+    margin-bottom: 5px;
+    padding: 10px;
+    border-radius: 4px;
+  }

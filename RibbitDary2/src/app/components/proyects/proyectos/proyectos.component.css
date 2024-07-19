@@ -1,0 +1,164 @@
+
+.tareasRutas{
+    text-decoration: none;
+}
+.content-Proyecto{
+    display: flex;
+    gap: 2%;
+    height: 30%; 
+    margin-top: 2%;
+}
+
+/*Informacion del proyecto*/
+.cont-Proy-Info{
+    width: 70%;
+    background-image: url('../../../../assets/img/fondo-Proyectos.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.cont-Proy-Info:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+
+.cont-Proy-Info-1{
+    padding: 2%;
+    display: flex;
+    gap: 50%;
+    margin-top: -5%;
+}
+
+.cont-Proy-Info-1 h2{
+  color: white;
+  font-size: 1em;
+}
+.cont-Proy-Info-1 h3{
+    color: white;
+    font-size: .9em;
+  }
+
+  .cont-Proy-Info-1 p{
+    color: white;
+    font-size: .9em;
+  }
+/*Nombre proyecto*/
+.if-Pro-1{
+    display: flex;
+    gap: 10px;
+    padding: 1%;
+}
+
+.if-Pro-1 h2{
+    color: white;
+    font-size: 1.5em;
+    margin-top: 3.3%;
+  }
+
+  .if-Pro-1 h3{
+    color: white;
+    font-size: 1.5em;
+  }
+/*Creador*/
+
+.users{
+    display: flex;
+    gap: 10%;
+    padding: 4%;
+}
+.users p{
+    font-size: 0.9em;
+}
+
+.users img{
+    height: 50px;
+    border-radius: 100%;
+}
+
+
+/*Proposito*/
+.container-Col-Pro{
+    width: 30%;
+
+}
+.cont-Col-Info-Pro h3{
+    font-size: 1em;
+    color: white;
+    text-align: center;
+}
+
+.cont-Col-Info-Pro{
+    border-radius: 10px;
+    background-color: #b45050a8;
+    height: 75%;
+    padding: 1% 0% 4% 6%;
+}
+
+.cont-Col-Info-Pro p{
+    font-size: 1em;
+}
+
+/*Barra de progreso*/
+/* Estilos generales para los botones */
+
+.project-actions{
+    width: 12%;
+    display: flex;
+}
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+
+  }
+  
+  /* Botón de editar */
+  .btn-edit {
+    background-color: #4CAF50;
+    color: white;
+    height: 20%;
+  }
+  
+  .btn-edit:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+  }
+  
+  /* Botón de borrar */
+  .btn-delete {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .btn-delete:hover {
+    background-color: #e53935;
+    transform: scale(1.05);
+  }
+  
+  /* Estilos para los íconos */
+  .btn-icon {
+    margin-right: 8px;
+    font-size: 18px;
+  }
+  
+  /* Añadiendo un toque cute */
+  .btn-cute {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-cute:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }

@@ -1,0 +1,56 @@
+<div class="content-Proyecto" *ngFor = "let proyect of proyects">
+  <div class="cont-Proy-Info">
+    <a [routerLink]="['/tareas', idU, proyect.idP]" class="tareasRutas">
+      <div class="if-Pro-1">
+        <h2>Nombre del proyecto:</h2>
+        <h3>{{proyect.nameProyect}}</h3>
+      </div>
+      <div class="cont-Proy-Info-1">
+        <div class="if-Pro-2">
+          <div>
+            <h2>Fecha de Inicio:</h2>
+            <p>{{proyect.fechaI}}</p>
+          </div>
+          <div>
+            <h2>Fecha de Fin:</h2>
+            <p>{{proyect.fechaF}}</p>
+          </div>
+        </div>
+        <div>
+          <div class="usersC">
+            <h2>Tipo de proyecto:</h2>
+            <p>{{proyect.idType}}</p>
+            
+            <h2>Persona Encargada:</h2>
+            <div class="users">
+              <img [src]="proyect.IconUserA" />
+              <p>{{proyect.idU}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="container-Col-Pro">
+    <div class="cont-Col-Info-Pro">
+      <div>
+        <h3>Descripcion del proyecto:</h3>
+      </div>
+      <div class="usersCol">
+        <p>
+          {{proyect.descripcion}}
+        </p>
+      </div>
+    </div>
+    <div class="project-actions">
+      <button class="btn btn-edit btn-cute" [routerLink]="['/crear-proyectos/edit/', proyect.idP]" >
+        <span class="btn-icon">✏️</span> Editar
+      </button>
+      <button class="btn btn-delete btn-cute" (click)="deleteProyect(proyect.idP)">
+        <span class="btn-icon">🗑️</span> Borrar
+      </button>
+    </div>
+  </div>
+
+</div>
