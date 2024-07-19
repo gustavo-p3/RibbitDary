@@ -4,6 +4,7 @@ import proyectsRoutes from './routes/proyectsRoutes';
 import tareasRoutes from './routes/tareasRoutes';
 import morgan from 'morgan';
 import cors from 'cors';
+import proyectxcolabRoutes from './routes/proyectxcolabRoutes';
 
 
 console.log('WORKS!!!!!');
@@ -32,6 +33,7 @@ class Server{
         this.app.use('/', indexRoutes);
         this.app.use('/api/proyects', proyectsRoutes); 
         this.app.use('/api/tareas', tareasRoutes); 
+        this.app.use('/api/proyectxcolab', proyectxcolabRoutes); 
     }
 
     start() : void{

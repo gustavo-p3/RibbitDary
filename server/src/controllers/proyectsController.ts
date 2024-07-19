@@ -85,7 +85,7 @@ class ProyectsController{
 
     public async update(req : Request, resp : Response){
         const {idP} = req.params;
-        await pool.query('UPDATE proyecto SET? WHERE idP =?', [req.body, idP]);
+        await pool.query('UPDATE proyecto SET ? WHERE idP =?', [req.body, idP]);
         resp.json({message:'Updating a proyects ' + req.params.id});
     }
 

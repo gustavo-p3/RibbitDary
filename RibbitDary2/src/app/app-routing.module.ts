@@ -29,7 +29,7 @@ const routes: Routes = [
   {path: 'proyectos/:idU', component: ProyectosComponent},
   {path: 'crear-proyectos', component:CreateProyectosComponent},
   {path: 'crear-proyectos/:idU', component:CreateProyectosComponent},
-  {path: 'crear-proyectos/edit/:idP', component:CreateProyectosComponent},
+  {path: 'edit-proyectos/edit/:idU/:idP', component:CreateProyectosComponent},
 
   
 

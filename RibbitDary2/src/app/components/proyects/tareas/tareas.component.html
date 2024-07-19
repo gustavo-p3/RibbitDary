@@ -8,7 +8,7 @@
   <body class="bodyT">
     <h1>Tareas:</h1>
 
-    <div class="containerTa"  >
+    <div class="containerTa">
       <div class="containerT">
         <div class="container-Tarea" *ngFor="let tarea of tareas">
           <div class="cont-Tarea-Info">
@@ -22,7 +22,7 @@
             </div>
             <div class="container-Tarea-Div2">
               <h2>Materiales</h2>
-              <li *ngFor = "let material of tarea.Materiales">
+              <li *ngFor="let material of tarea.Materiales">
                 {{material.Material}}
               </li>
               <div>
@@ -44,34 +44,18 @@
               </div>
             </div>
           </div>
+          <div class="edit-delete-buttons">
+            <button ><i class="fas fa-edit"></i></button>
+            <button ><i class="fas fa-trash"></i></button>
+          </div>
         </div>
 
         <div class="add-task-button" [routerLink]="['/crear-tareas', idP]">
           +
-      </div>
-      
+        </div>
       </div>
 
       <div class="containerP">
-        <!-- Calendario 
-        <div class="container-Col-Cal">
-          <img src="../../../assets/img/Calendario-P.jpg" />
-        </div>
-      -->
-        <!-- Contenedor de Progreso 
-
-        <div class="container-Pro">
-          <div class="cont-Pro-Info">
-            <h3>Progreso:</h3>
-            <div class="progress-container">
-              <div class="progress-bar" id="progress-bar" [style.height.%]="proyects.Porcentaje"></div>
-              <div class="progress-text" id="progress-text">{{ proyects.progreso }}%</div>
-            </div>
-          </div>
-        </div>
-        -->
-      
-        <!-- Descripción del Proyecto -->
         <div class="container-Col-Pro">
           <div class="cont-Col-Info-Pro">
             <div>
@@ -82,7 +66,6 @@
             </div>
           </div>
         </div>
-        <!-- Notas del proyecto -->
         <div class="container-Col-Pro">
           <div class="cont-Col-Info-Pro">
             <div>
@@ -93,22 +76,20 @@
             </div>
           </div>
         </div>
-      
-        <!-- Personas en el Proyecto -->
         <div class="container-Col">
           <div class="cont-Col-Info">
             <div>
               <h3>Personas en el proyecto:</h3>
             </div>
             <div class="usersCol">
-              <ng-container *ngFor="let user of proyects.PersonasInvolucradas">
-                <img [src]="user.IconUser" />
+              <ng-container *ngFor="let user of colaboradores">
+                <h3>{{user.idColaborador}}</h3>
+                <img [src]="user.idColaborador" />
               </ng-container>
             </div>
           </div>
         </div>
       </div>
-      
     </div>
   </body>
 </html>

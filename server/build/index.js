@@ -9,6 +9,7 @@ const proyectsRoutes_1 = __importDefault(require("./routes/proyectsRoutes"));
 const tareasRoutes_1 = __importDefault(require("./routes/tareasRoutes"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
+const proyectxcolabRoutes_1 = __importDefault(require("./routes/proyectxcolabRoutes"));
 console.log('WORKS!!!!!');
 class Server {
     constructor() {
@@ -27,6 +28,7 @@ class Server {
         this.app.use('/', indexRoutes_1.default);
         this.app.use('/api/proyects', proyectsRoutes_1.default);
         this.app.use('/api/tareas', tareasRoutes_1.default);
+        this.app.use('/api/proyectxcolab', proyectxcolabRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

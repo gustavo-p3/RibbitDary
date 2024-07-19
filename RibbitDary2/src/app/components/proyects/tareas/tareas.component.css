@@ -2,22 +2,21 @@
     width: auto;
     font-family: sans-serif;
 }
-/*Divicion entre tareas y progreso*/
+
+/*División entre tareas y progreso*/
 .containerTa{
     display: flex;
     gap: 3%;
-
 }
 
 /*Container de donde van tareas*/
 .containerT{
     width: 70%;
     height: auto;
-
 }
 
 /*Container con tarea*/
-.container-Tarea{
+.container-Tarea {
     background-image: url('../../../../assets/img/fondo-Tareas.jpg');
     background-size: cover;
     background-position: center;
@@ -26,18 +25,71 @@
     background-position: 50% 50%;
     color: white;
     margin-bottom: 2%;
+    position: relative;
+    transition: background-color 0.3s, transform 0.3s,margin-bottom 0.3s ease;
 }
 
-/*Container con la informacion de la tarea
-Organizacion de la informacion dentro de cada
-tarea*/
+/* Botones de edición y eliminación */
+.edit-delete-buttons {
+    display: none;
+    position: absolute;
+    bottom: -50px; /* Posición debajo del contenedor */
+    left: 50%;
+    transform: translateX(-50%);
+    gap: 10px;
+}
+
+/* Estilo general del botón */
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    background-color: #3e8e41;
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Mostrar botones al pasar el mouse */
+.container-Tarea:hover .edit-delete-buttons {
+    display: flex;
+
+}
+
+/* Aumentar el margen inferior del contenedor de tarea al pasar el mouse */
+.container-Tarea:hover {
+    margin-bottom: 70px;
+    background-color: #45a049;
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/*Container con la informacion de la tarea*/
 .cont-Tarea-Info{
     display: flex;
     gap: 2%;
     padding: 4%;
 }
 
-/*Container para movar cada parte de la info de la tarea*/
+/*Container para mover cada parte de la info de la tarea*/
 /*Div1*/
 .container-Tarea-Div1{
     width: 50%;
@@ -52,11 +104,9 @@ tarea*/
 /*Div2*/
 .container-Tarea-Div2{
     width: 27%;
-    
 }
 .container-Tarea-Div2 h2{
     font-size: 1.1rem;
-
 }
 .container-Tarea-Div2 ul{
     font-size: 0.9em;
@@ -82,16 +132,16 @@ tarea*/
     align-items: center;
     width: 50px;
     height: 50px;
-    background-color: #9ed48d; /* Ribbit Dark color */
+    background-color: #9ed48d;
     color: white;
     border-radius: 50%;
     font-size: 24px;
     cursor: pointer;
-    margin: 20px auto; /* Centra el botón horizontalmente */
+    margin: 20px auto;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
 }
-/*Usuarios*/
 
+/*Usuarios*/
 .users{
     display: flex;
     gap: 10%;
@@ -100,20 +150,17 @@ tarea*/
 .users p{
     font-size: 1em;
 }
-
 .users img{
     height: 50px;
     border-radius: 100%;
 }
 
-
 /*Progreso y colaboradores*/
-/*Container donde van colaboradoes y progreso*/
 .containerP{
     width: 30%;
     height: auto;
 }
- /*Container donde el progreso*/
+
 .container-Pro{
     background-color: #cfbba2a8;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
@@ -128,7 +175,6 @@ tarea*/
     padding: 5% 0% 8% 30%;
 }
 
-
 /*Barra de progreso*/
 .progress-container {
     width: 50px;
@@ -137,7 +183,6 @@ tarea*/
     border-radius: 25px;
     overflow: hidden;
     position: relative;
-    
 }
 .progress-bar {
     width: 100%;
@@ -168,26 +213,23 @@ tarea*/
 .cont-Col-Info{
     padding: 1% 0% 4% 6%;
 }
-
 .usersCol {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    
 }
 .usersCol img {
-    width: calc(20% - 10px); 
-    box-sizing: border-box; 
+    width: calc(20% - 10px);
+    box-sizing: border-box;
     border-radius: 100%;
 }
-
 .cont-Col-Info h3{
     font-size: 0.9em;
     color: white;
     text-align: center;
 }
 
-/*Proposito*/
+/*Propósito*/
 .container-Col-Pro{
     background-color: #e9b570a8;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
@@ -200,22 +242,18 @@ tarea*/
     color: white;
     text-align: center;
 }
-
 .cont-Col-Info-Pro{
     padding: 1% 0% 4% 6%;
 }
-
 .cont-Col-Info-Pro p{
     font-size: 0.8em;
 }
 
 /*Calendario*/
-
 .container-Col-Cal{
     border-radius: 10px;
     width: 90%;
 }
-
 .container-Col-Cal img{
     width: 100%;
 }

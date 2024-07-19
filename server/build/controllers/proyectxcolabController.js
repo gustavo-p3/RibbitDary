@@ -12,31 +12,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.proyectsController = void 0;
+exports.proyectxcolabController = void 0;
 const database_1 = __importDefault(require("../database"));
-class ProyectsController {
+class ProyectxcolabController {
     list(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
-            const proyect = yield database_1.default.query('SELECT * FROM proyecto');
-            resp.json(proyect);
+            const proyectxcolab = yield database_1.default.query('SELECT * FROM proyectxcolab');
+            resp.json(proyectxcolab);
         });
     }
-    listU(req, resp) {
+    listUP(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { idU } = req.params;
+            const { idP } = req.params;
             try {
                 const proyectos = yield database_1.default.query(`
-                SELECT proyecto.* 
-                FROM proyecto 
-                WHERE proyecto.idU = ?
-    
-                UNION
-    
-                SELECT proyecto.* 
-                FROM proyecto 
-                INNER JOIN proyectxcolab 
-                ON proyecto.idP = proyectxcolab.idP 
-                WHERE proyectxcolab.idColaboradores = ?`, [idU, idU]);
+                SELECT proyectxcolab.* 
+                FROM proyectxcolab 
+                WHERE proyectxcolab.idP = ?
+                `, [idP]);
                 resp.json(proyectos);
             }
             catch (error) {
@@ -76,30 +69,5 @@ class ProyectsController {
             resp.json({ message: 'Proyect Saved' });
         });
     }
-    delete(req, resp) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { idP } = req.params;
-            try {
-                // Borrar todas las filas en proyectxcolab donde idP sea igual a idP
-                yield database_1.default.query('DELETE FROM proyectxcolab WHERE idP = ?', [idP]);
-                // Borrar el proyecto en la tabla proyecto
-                yield database_1.default.query('DELETE FROM tarea WHERE idP = ?', [idP]);
-                // Borrar el proyecto en la tabla proyecto
-                yield database_1.default.query('DELETE FROM proyecto WHERE idP = ?', [idP]);
-                resp.json({ message: 'Proyect deleted' });
-            }
-            catch (error) {
-                console.error('Error al borrar proyecto:', error);
-                resp.status(500).json({ message: 'Error al borrar proyecto' });
-            }
-        });
-    }
-    update(req, resp) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { idP } = req.params;
-            yield database_1.default.query('UPDATE proyecto SET ? WHERE idP =?', [req.body, idP]);
-            resp.json({ message: 'Updating a proyects ' + req.params.id });
-        });
-    }
 }
-exports.proyectsController = new ProyectsController();
+exports.proyectxcolabController = new ProyectxcolabController();

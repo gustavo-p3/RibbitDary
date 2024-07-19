@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="project-actions">
-      <button class="btn btn-edit btn-cute" [routerLink]="['/crear-proyectos/edit/', proyect.idP]" >
+      <button class="btn btn-edit btn-cute" [routerLink]="['/edit-proyectos/edit/', proyect.idU, proyect.idP]" >
         <span class="btn-icon">✏️</span> Editar
       </button>
       <button class="btn btn-delete btn-cute" (click)="deleteProyect(proyect.idP)">

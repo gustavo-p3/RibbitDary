@@ -33,12 +33,15 @@ export class ProyectsService {
     return this.http.delete<Proyect>(`${this.API_BASE_URL}/proyects/${idP}`);
   }
 
-  updateProyect(idP:string | number, updateProyect:Proyect): Observable<Proyect> {
-
-    return this.http.put<Proyect>(`${this.API_BASE_URL}/proyects/${idP}`, this.updateProyect);
-    
+  updateProyect(idP: number, updatedProyect: Proyect): Observable<Proyect> {
+    return this.http.put<Proyect>(`${this.API_BASE_URL}/proyects/${idP}`, updatedProyect);
   }
 
+  // Colaboradores
+  getColaboradores(idP : string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.API_BASE_URL}/proyectxcolab/${idP}`);
+  }
+  
   // Tareas
   getTareas(): Observable<Tarea[]> {
     return this.http.get<Tarea[]>(`${this.API_BASE_URL}/tareas`);
