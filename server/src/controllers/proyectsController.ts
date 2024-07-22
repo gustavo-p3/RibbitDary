@@ -22,7 +22,7 @@ class ProyectsController{
                 FROM proyecto 
                 INNER JOIN proyectxcolab 
                 ON proyecto.idP = proyectxcolab.idP 
-                WHERE proyectxcolab.idColaboradores = ?`, [idU, idU]);
+                WHERE proyectxcolab.idColaborador = ?`, [idU, idU]);
             
             resp.json(proyectos);
         } catch (error) {
@@ -39,7 +39,7 @@ class ProyectsController{
                 SELECT proyecto.*
                 FROM proyecto
                 LEFT JOIN proyectxcolab ON proyecto.idP = proyectxcolab.idP
-                WHERE (proyecto.idP = ? AND proyecto.idU = ?) OR (proyecto.idP = ? AND proyectxcolab.idColaboradores = ?)
+                WHERE (proyecto.idP = ? AND proyecto.idU = ?) OR (proyecto.idP = ? AND proyectxcolab.idColaborador = ?)
             `;
     
             const result = await pool.query(query, [idP, idU, idP, idU]);
@@ -57,17 +57,21 @@ class ProyectsController{
     
     
 
-    public async create(req : Request, resp : Response): Promise<void>{
+    public async create(req: Request, resp: Response): Promise<void> {
         console.log(req.body);
-       await pool.query('INSERT INTO proyecto SET ?', [req.body]);
-        resp.json({message : 'Proyect Saved'});
+        const result = await pool.query('INSERT INTO proyecto SET ?', [req.body]);
+        const idP = result.insertId; // Obtener el ID del proyecto recién creado
+        resp.json({ message: 'Proyect Saved', idP: idP }); // Devolver el ID del proyecto
     }
+    
 
     public async delete(req : Request, resp : Response){
         const {idP} = req.params;
         try {
             // Borrar todas las filas en proyectxcolab donde idP sea igual a idP
             await pool.query('DELETE FROM proyectxcolab WHERE idP = ?', [idP]);
+
+            await pool.query('DELETE FROM material WHERE idP = ?', [idP]);
 
             // Borrar el proyecto en la tabla proyecto
             await pool.query('DELETE FROM tarea WHERE idP = ?', [idP]);
@@ -88,6 +92,23 @@ class ProyectsController{
         await pool.query('UPDATE proyecto SET ? WHERE idP =?', [req.body, idP]);
         resp.json({message:'Updating a proyects ' + req.params.id});
     }
+
+    /*
+        public async update(req : Request, resp : Response){
+        const {idP} = req.params;
+        try {
+            await pool.query('UPDATE proyecto SET ? WHERE idP =?', [req.body, idP]);
+            resp.json({message:'Updating a proyects ' + req.params.id});
+
+            await proyectxcolabController.delete;
+            
+        } catch (error) {
+            console.error('Error al obtener proyecto:', error);
+            resp.status(500).json({ message: 'Error interno del servidor' });
+        }
+
+    }
+    */
 
 }
 

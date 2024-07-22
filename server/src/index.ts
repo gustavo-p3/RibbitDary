@@ -5,23 +5,21 @@ import tareasRoutes from './routes/tareasRoutes';
 import morgan from 'morgan';
 import cors from 'cors';
 import proyectxcolabRoutes from './routes/proyectxcolabRoutes';
+import usuarioRoutes from './routes/usuarioRoutes';
+import userxuserRoutes from './routes/userxuserRoutes';
+import materialesRoutes from './routes/materialesRoutes';
+import authRoutes from './routes/authRoutes';
 
+class Server {
+    public app: Application;
 
-console.log('WORKS!!!!!');
-
-
-class Server{
-    
-    public app: Application; 
-
-
-    constructor(){
+    constructor() {
         this.app = express();
-        this.config(); 
+        this.config();
         this.routes();
     }
-        
-    config() : void{
+
+    config(): void {
         this.app.set('port', process.env.PORT || 3000);
         this.app.use(morgan('dev'));
         this.app.use(cors());
@@ -29,19 +27,24 @@ class Server{
         this.app.use(express.urlencoded({ extended: false }));
     }
 
-    routes() : void {
+    routes(): void {
         this.app.use('/', indexRoutes);
-        this.app.use('/api/proyects', proyectsRoutes); 
-        this.app.use('/api/tareas', tareasRoutes); 
-        this.app.use('/api/proyectxcolab', proyectxcolabRoutes); 
+        this.app.use('/api/proyects', proyectsRoutes);
+        this.app.use('/api/tareas', tareasRoutes);
+        this.app.use('/api/proyectxcolab', proyectxcolabRoutes);
+        this.app.use('/api/userxuser', userxuserRoutes);
+        this.app.use('/api/usuario', usuarioRoutes);
+        this.app.use('/api/materiales', materialesRoutes);
+        this.app.use('/api', authRoutes); // Agregado
+
     }
 
-    start() : void{
-        this.app.listen(this.app.get('port'),()=>{
+    start(): void {
+        this.app.listen(this.app.get('port'), () => {
             console.log('Server on port', this.app.get('port'));
         });
     }
 }
 
-const server = new Server(); 
+const server = new Server();
 server.start();

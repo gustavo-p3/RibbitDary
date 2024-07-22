@@ -36,7 +36,7 @@ class ProyectsController {
                 FROM proyecto 
                 INNER JOIN proyectxcolab 
                 ON proyecto.idP = proyectxcolab.idP 
-                WHERE proyectxcolab.idColaboradores = ?`, [idU, idU]);
+                WHERE proyectxcolab.idColaborador = ?`, [idU, idU]);
                 resp.json(proyectos);
             }
             catch (error) {
@@ -53,7 +53,7 @@ class ProyectsController {
                 SELECT proyecto.*
                 FROM proyecto
                 LEFT JOIN proyectxcolab ON proyecto.idP = proyectxcolab.idP
-                WHERE (proyecto.idP = ? AND proyecto.idU = ?) OR (proyecto.idP = ? AND proyectxcolab.idColaboradores = ?)
+                WHERE (proyecto.idP = ? AND proyecto.idU = ?) OR (proyecto.idP = ? AND proyectxcolab.idColaborador = ?)
             `;
                 const result = yield database_1.default.query(query, [idP, idU, idP, idU]);
                 if (result.length > 0) {
@@ -72,8 +72,9 @@ class ProyectsController {
     create(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
-            yield database_1.default.query('INSERT INTO proyecto SET ?', [req.body]);
-            resp.json({ message: 'Proyect Saved' });
+            const result = yield database_1.default.query('INSERT INTO proyecto SET ?', [req.body]);
+            const idP = result.insertId; // Obtener el ID del proyecto recién creado
+            resp.json({ message: 'Proyect Saved', idP: idP }); // Devolver el ID del proyecto
         });
     }
     delete(req, resp) {
@@ -82,6 +83,7 @@ class ProyectsController {
             try {
                 // Borrar todas las filas en proyectxcolab donde idP sea igual a idP
                 yield database_1.default.query('DELETE FROM proyectxcolab WHERE idP = ?', [idP]);
+                yield database_1.default.query('DELETE FROM material WHERE idP = ?', [idP]);
                 // Borrar el proyecto en la tabla proyecto
                 yield database_1.default.query('DELETE FROM tarea WHERE idP = ?', [idP]);
                 // Borrar el proyecto en la tabla proyecto

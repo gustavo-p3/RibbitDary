@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, HostBinding, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProyectsService } from '../../../services/proyects.service';
 
 @Component({
   selector: 'app-navigation',
@@ -7,7 +8,31 @@ import { Router } from '@angular/router';
   styleUrl: './navigation.component.css'
 })
 export class NavigationComponent {
-  constructor(public router: Router) {}
+  @HostBinding('class') classes = 'row';
+  usuario: any = [];
+
+  constructor(private proyectsService: ProyectsService,
+    private route: ActivatedRoute, public router: Router) { }
+
+  ngOnInit(): void {
+    const idU = this.route.snapshot.paramMap.get('idU');
+
+    if (idU) {
+      this.getUsuario(idU);
+    }
+
+  }
+
+
+  getUsuario(idU: string) {
+    this.proyectsService.getUsuario(idU).subscribe(
+      resp => {
+        this.usuario = resp;
+      },
+      err => console.error('Error al obtener usuario:', err)
+    );
+
+  }
 
 
 }

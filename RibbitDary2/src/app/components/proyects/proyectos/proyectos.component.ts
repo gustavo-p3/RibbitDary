@@ -11,6 +11,7 @@ export class ProyectosComponent implements OnInit {
   @HostBinding('class') classes = 'row';
   proyects: any = []; // Tipado adecuado para el arreglo de proyectos
   idU: string | null = null;
+  creadorProyect: any = {};
 
   constructor(
     private proyectsService: ProyectsService,
@@ -38,9 +39,22 @@ export class ProyectosComponent implements OnInit {
       this.proyectsService.getProyect(this.idU).subscribe(
         resp => {
           this.proyects = resp;
+          this.proyects.forEach((proyect: any) => {
+            this.getUsuario(proyect.idU);
+          });
+
         },
         err => console.error('Error al obtener proyectos:', err)
       );
     }
+  }
+  getUsuario(idU : string){
+    this.proyectsService.getUsuario(idU).subscribe(
+      resp => {
+        this.creadorProyect = resp;
+      },
+      err => console.error('Error al obtener usuario:', err)
+    );
+
   }
 }

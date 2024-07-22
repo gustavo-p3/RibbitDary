@@ -1,16 +1,16 @@
-.bodyT{
+.bodyT {
     width: auto;
     font-family: sans-serif;
 }
 
 /*División entre tareas y progreso*/
-.containerTa{
+.containerTa {
     display: flex;
     gap: 3%;
 }
 
 /*Container de donde van tareas*/
-.containerT{
+.containerT {
     width: 70%;
     height: auto;
 }
@@ -26,14 +26,14 @@
     color: white;
     margin-bottom: 2%;
     position: relative;
-    transition: background-color 0.3s, transform 0.3s,margin-bottom 0.3s ease;
+    transition: background-color 0.3s, transform 0.3s, margin-bottom 0.3s ease;
 }
 
 /* Botones de edición y eliminación */
 .edit-delete-buttons {
     display: none;
     position: absolute;
-    bottom: -50px; /* Posición debajo del contenedor */
+    bottom: 10px; /* Cambiado para que los botones se mantengan dentro del contenedor */
     left: 50%;
     transform: translateX(-50%);
     gap: 10px;
@@ -71,19 +71,18 @@ button:active {
 /* Mostrar botones al pasar el mouse */
 .container-Tarea:hover .edit-delete-buttons {
     display: flex;
-
 }
 
 /* Aumentar el margen inferior del contenedor de tarea al pasar el mouse */
 .container-Tarea:hover {
-    margin-bottom: 70px;
+    margin-bottom: 50px; /* Ajustar el margen inferior para dar espacio a los botones */
     background-color: #45a049;
     transform: scale(1.05);
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
 /*Container con la informacion de la tarea*/
-.cont-Tarea-Info{
+.cont-Tarea-Info {
     display: flex;
     gap: 2%;
     padding: 4%;
@@ -91,37 +90,42 @@ button:active {
 
 /*Container para mover cada parte de la info de la tarea*/
 /*Div1*/
-.container-Tarea-Div1{
+.container-Tarea-Div1 {
     width: 50%;
 }
 
-.container-Tarea-Div1 h2{
+.container-Tarea-Div1 h2 {
     font-size: 1.1rem;
 }
-.container-Tarea-Div1 p{
+
+.container-Tarea-Div1 p {
     font-size: 1em;
 }
+
 /*Div2*/
-.container-Tarea-Div2{
+.container-Tarea-Div2 {
     width: 27%;
 }
-.container-Tarea-Div2 h2{
+
+.container-Tarea-Div2 h2 {
     font-size: 1.1rem;
 }
-.container-Tarea-Div2 ul{
+
+.container-Tarea-Div2 ul {
     font-size: 0.9em;
 }
 
 /*Div3*/
-.container-Tarea-Div3{
+.container-Tarea-Div3 {
     width: 20%;
 }
 
-.container-Tarea-Div3 h2{
+.container-Tarea-Div3 h2 {
     font-size: 1.1rem;
     text-align: center;
 }
-.container-Tarea-Div3 p{
+
+.container-Tarea-Div3 p {
     font-size: 0.8em;
 }
 
@@ -142,36 +146,40 @@ button:active {
 }
 
 /*Usuarios*/
-.users{
+.users {
     display: flex;
     gap: 10%;
     padding: 4%;
 }
-.users p{
+
+.users p {
     font-size: 1em;
 }
-.users img{
+
+.users img {
     height: 50px;
     border-radius: 100%;
 }
 
 /*Progreso y colaboradores*/
-.containerP{
+.containerP {
     width: 30%;
     height: auto;
 }
 
-.container-Pro{
+.container-Pro {
     background-color: #cfbba2a8;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     width: 90%;
 }
-.cont-Pro-Info h3{
+
+.cont-Pro-Info h3 {
     font-size: 1.3em;
     color: white;
 }
-.cont-Pro-Info{
+
+.cont-Pro-Info {
     padding: 5% 0% 8% 30%;
 }
 
@@ -184,6 +192,7 @@ button:active {
     overflow: hidden;
     position: relative;
 }
+
 .progress-bar {
     width: 100%;
     height: 0;
@@ -193,6 +202,7 @@ button:active {
     bottom: 0;
     transition: height 0.5s ease;
 }
+
 .progress-text {
     text-align: center;
     position: absolute;
@@ -202,7 +212,7 @@ button:active {
 }
 
 /*Colaboradores*/
-.container-Col{
+.container-Col {
     background-color: #534c43a8;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
@@ -210,50 +220,57 @@ button:active {
     margin-top: 5%;
 }
 
-.cont-Col-Info{
+.cont-Col-Info {
     padding: 1% 0% 4% 6%;
 }
+
 .usersCol {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
 }
+
 .usersCol img {
     width: calc(20% - 10px);
     box-sizing: border-box;
     border-radius: 100%;
 }
-.cont-Col-Info h3{
+
+.cont-Col-Info h3 {
     font-size: 0.9em;
     color: white;
     text-align: center;
 }
 
 /*Propósito*/
-.container-Col-Pro{
+.container-Col-Pro {
     background-color: #e9b570a8;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     width: 90%;
     margin-top: 5%;
 }
-.cont-Col-Info-Pro h3{
+
+.cont-Col-Info-Pro h3 {
     font-size: 1em;
     color: white;
     text-align: center;
 }
-.cont-Col-Info-Pro{
+
+.cont-Col-Info-Pro {
     padding: 1% 0% 4% 6%;
 }
-.cont-Col-Info-Pro p{
+
+.cont-Col-Info-Pro p {
     font-size: 0.8em;
 }
 
 /*Calendario*/
-.container-Col-Cal{
+.container-Col-Cal {
     border-radius: 10px;
     width: 90%;
 }
-.container-Col-Cal img{
+
+.container-Col-Cal img {
     width: 100%;
 }

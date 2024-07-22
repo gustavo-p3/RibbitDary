@@ -13,6 +13,9 @@ class ProyectxcolabRoutes {
         //Creando una ruta para mi aplicación del servidor para la 
         //ruta inicial y se devuelve el mensaje Hello
         this.router.get('/:idU/:idP', proyectxcolabController_1.proyectxcolabController.getOne);
+        this.router.post('/', proyectxcolabController_1.proyectxcolabController.create);
+        // this.router.put('/:idPC', proyectxcolabController.update);
+        this.router.delete('/:idP/:idColaborador', proyectxcolabController_1.proyectxcolabController.delete);
     }
 }
 const proyectxcolabRoutes = new ProyectxcolabRoutes;

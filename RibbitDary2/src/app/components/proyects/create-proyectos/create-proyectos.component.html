@@ -1,8 +1,6 @@
 <form class="formProyectos">
   <div class="contentForm">
-    <!-- Aqui estan las tareas y los proyectos -->
     <div class="contTP">
-      <!-- Para agregar Proyectos -->
       <div class="contProyecto">
         <div class="contProyecto1">
           <label for="NombreProyecto">Nombre Del Proyecto:</label>
@@ -13,7 +11,11 @@
             class="form_input"
             autofocus
           />
-          <select id="TipodeProyecto" name="TipodeProyecto" [(ngModel)]="proyect.idType">
+          <select
+            id="TipodeProyecto"
+            name="TipodeProyecto"
+            [(ngModel)]="proyect.idType"
+          >
             <option value="opcion1">Tipo de Proyecto</option>
             <option value="1">Escolar</option>
             <option value="2">Trabajo</option>
@@ -21,7 +23,7 @@
           </select>
           <div class="contProyectoFechas">
             <div class="contProyectoFechas1">
-              <label for="FechaInicioP">Fecha de Inicio: </label>
+              <label for="FechaInicioP">Fecha de Inicio:</label>
               <input
                 type="date"
                 id="FechaInicioP"
@@ -31,7 +33,7 @@
               />
             </div>
             <div class="contProyectoFechas1">
-              <label for="FechaFinalP">Fecha Final: </label>
+              <label for="FechaFinalP">Fecha Final:</label>
               <input
                 type="date"
                 id="FechaFinalP"
@@ -41,7 +43,7 @@
               />
             </div>
           </div>
-          <label for="Descripcion">Descripcion: </label>
+          <label for="Descripcion">Descripcion:</label>
           <textarea
             id="Descripcion"
             name="Descripcion"
@@ -55,35 +57,61 @@
       <div class="perNotType">
         <div class="notas-container">
           <h2>Notas:</h2>
-          <textarea id="Notas" name="Notas" [(ngModel)]="proyect.notas" class="notas-textarea" placeholder="Escribe tus notas aquí..."></textarea>
-        </div>        
-    </div>
-     
-    </div>
-    <!-- Aqui van las personas, notas y tipo -->
-    <div class="perNotType-Container">
-      <button type="button" class="submit-button" (click)="edit ? updateProyect(): saveNewProyect()">Subir Proyecto</button>
-
-      <div class="personas-container">
-        <h2>Personas:</h2>
-        <div class="personas-list">
-          <div ><!--*ngFor="let persona of proyect.PersonasInvolucradas" class="persona"-->
-            <img [src]="">
-            <span></span>
-          </div>
-        </div>
-        <div class="personas-disponibles">
-          <h3>Personas disponibles:</h3>
-          <ul>
-            <li><!--*ngFor="let persona of personasDisponibles" (click)="agregarPersona(persona)"-->
-              <img [src]="" >
-
-            </li>
-          </ul>
+          <textarea
+            id="Notas"
+            name="Notas"
+            [(ngModel)]="proyect.notas"
+            class="notas-textarea"
+            placeholder="Escribe tus notas aquí..."
+          ></textarea>
         </div>
       </div>
-   
+    </div>
 
+    <div class="perNotType-Container">
+      <button
+        type="button"
+        class="submit-button"
+        (click)="edit ? updateProyect() : saveNewProyect()"
+      >
+        Subir Proyecto
+      </button>
+
+      <div class="personas-container">
+        <h2>Personas seleccionadas:</h2>
+        <div class="personas-list">
+          <div *ngIf="edit" class="personas-list">
+            <div
+              *ngFor="let colab of colaSelect"
+              class="persona"
+            >
+            <img [src]="colab.icono" alt="Icono de usuario" />
+              <span>{{ colab.nombres }}</span>
+              <button
+                type="button"
+                (click)="deleteColaborador(colab.idU)"
+                class="delete-button"
+              >
+                Borrar
+              </button>
+            </div>
+          </div>
+          <div class="personas-disponibles">
+            <h3>Personas disponibles:</h3>
+            <ul>
+              <li *ngFor="let user of colaDispo">
+                <input
+                  type="checkbox"
+                  [value]="user.idU"
+                  (change)="toggleColaboradorSeleccionado(user.idU, $event)"
+                />
+                <img [src]="user.icono" alt="Icono de usuario" />
+                <span>{{ user.nombres }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </form>

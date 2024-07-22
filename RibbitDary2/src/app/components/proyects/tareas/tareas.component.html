@@ -15,16 +15,18 @@
             <div class="container-Tarea-Div1">
               <h2>Tarea:</h2>
               <p>{{tarea.nomTarea}}</p>
-              <h2>Fecha</h2>
+              <h2>Fecha:</h2>
               <p>{{tarea.fechaI}}</p>
-              <h2>Descripcion</h2>
+              <h2>Descripcion:</h2>
               <p>{{tarea.descripcion}}</p>
             </div>
             <div class="container-Tarea-Div2">
-              <h2>Materiales</h2>
-              <li *ngFor="let material of tarea.Materiales">
-                {{material.Material}}
-              </li>
+              <h2>Materiales:</h2>
+              <ul>
+                <li *ngFor="let material of materiales[tarea.idT]">
+                  {{material.nombreMaterial}}
+                </li>
+              </ul>
               <div>
                 <h2>Fecha de Fin:</h2>
                 <p>{{tarea.fechaF}}</p>
@@ -34,23 +36,25 @@
               <div class="usersC">
                 <h2>Persona encargada:</h2>
                 <div class="users">
-                  <img [src]="" />
-                  <p>{{tarea.idColaboradores}}</p>
+                  <div *ngFor="let colab of colaboradorTareas[tarea.idColaborador]" class="users">
+                    <img [src]="colab.icono"/>
+                    <p>{{colab.nombres}}</p>
+                  </div>
                 </div>
               </div>
               <div class="users">
-                <h2>Completado</h2>
+                <h2>Completado:</h2>
                 <input type="checkbox" id="completed" name="completed" />
               </div>
             </div>
           </div>
           <div class="edit-delete-buttons">
-            <button ><i class="fas fa-edit"></i></button>
-            <button ><i class="fas fa-trash"></i></button>
+            <button><i class="fas fa-edit"></i></button>
+            <button (click)="deleteTarea(tarea.idT)"><i class="fas fa-trash"></i></button>
           </div>
         </div>
 
-        <div class="add-task-button" [routerLink]="['/crear-tareas', idP]">
+        <div class="add-task-button" [routerLink]="['/crear-tareas', idU, idP]">
           +
         </div>
       </div>
@@ -83,8 +87,7 @@
             </div>
             <div class="usersCol">
               <ng-container *ngFor="let user of colaboradores">
-                <h3>{{user.idColaborador}}</h3>
-                <img [src]="user.idColaborador" />
+                <img [src]="user.icono" />
               </ng-container>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Tarea, Proyect } from '../../../models/Proyect';
+import { Tarea, Material } from '../../../models/Proyect';
 import { ProyectsService } from '../../../services/proyects.service';
 
 @Component({
@@ -10,16 +10,19 @@ import { ProyectsService } from '../../../services/proyects.service';
 })
 export class CreateTareasComponent implements OnInit {
   tarea: Tarea = {
-    idP: '', // Solo idP se inicializa desde la ruta
+    idP: '',
     nomTarea: '',
     fechaI: '',
     descripcion: '',
-    Materiales: [],
     fechaF: '',
-    idColaboradores: 'opcion1',
+    idColaborador: 'opcion1',
   };
-  proyects: any = [];
+
   newMaterial: string = '';
+  materiales: Material[] = [];
+
+  proyects: any = [];
+  colaboradores: any = [];
 
   constructor(
     private proyectsService: ProyectsService,
@@ -28,45 +31,69 @@ export class CreateTareasComponent implements OnInit {
 
   ngOnInit() {
     const idP = this.route.snapshot.paramMap.get('idP');
-   if (idP) {
-
-      this.tarea.idP = idP; // Asigna el idP obtenido de la ruta 
-
+    if (idP) {
       this.proyectsService.getProyect(idP).subscribe(
         resp => {
           this.proyects = resp;
         },
         err => console.error('Error al obtener proyectos:', err)
       );
-  
+
+      this.proyectsService.getColaboradores(idP).subscribe(
+        resp => {
+          this.colaboradores = resp;
+        },
+        err => console.error('Error al obtener colaboradores:', err)
+      );
     }
   }
 
-  addMaterial() { //Agregar Materiales temporalmente y subirlos
-    if (this.newMaterial.trim()) {
-      this.tarea.Materiales?.push({ Material: this.newMaterial });
+  addMaterial() {
+    if (this.newMaterial) {
+      this.materiales.push({ nombreMaterial: this.newMaterial, idT: '' });
       this.newMaterial = '';
     }
   }
 
-  saveNewTarea() {
-
-  /*  const selectedUser = 
-    this.proyects.PersonasInvolucradas.find(user => user.NombrePersonasInvolucradas 
-      === this.tarea.PersonaACargo);
-    
-    if (selectedUser) {
-      this.tarea.IconUser = selectedUser.IconUser; // Asignar el IconUser del usuario seleccionado a la tarea
+  removeMaterial(material: Material) {
+    const index = this.materiales.indexOf(material);
+    if (index > -1) {
+      this.materiales.splice(index, 1);
     }
-    
-  this.proyects*/
-    this.proyectsService.saveTarea(this.tarea).subscribe(
-      resp => { 
-        console.log('Tarea guardada:', resp); 
-
-      },
-      err => console.error('Error al guardar tarea:', err)
-    );
   }
-  
+
+  async saveNewTarea() {
+    const idU = this.route.snapshot.paramMap.get('idU');
+    const idP = this.route.snapshot.paramMap.get('idP');
+
+    if (idU && idP) {
+      this.tarea.idU = idU;
+      this.tarea.idP = idP;
+      try {
+        const resp = await this.proyectsService.saveTarea(this.tarea).toPromise();
+        console.log('Tarea guardada:', resp);
+
+        if (resp && resp.idT) {
+          const idT = resp.idT.toString();
+          this.saveNewMaterials(idT, idP);
+        }
+      } catch (err) {
+        console.error('Error al guardar tarea:', err);
+      }
+    }
+  }
+
+  saveNewMaterials(idT: string, idP: string ){
+
+    this.materiales.forEach(material => {
+      material.idT = idT;
+      material.idP = idP;
+      this.proyectsService.saveMaterial(material).subscribe(
+        resp => {
+          console.log('Material guardado:', resp);
+        },
+        err => console.error('Error al guardar material:', err)
+      );
+    });
+  }
 }

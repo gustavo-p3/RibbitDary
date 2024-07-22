@@ -28,7 +28,7 @@ class TareasController {
                 const tareas = yield database_1.default.query(`
                 SELECT *
                 FROM tarea
-                WHERE idP = ? AND (idU = ? OR idColaboradores = ?)
+                WHERE idP = ? AND (idU = ? OR idColaborador = ?)
             `, [idP, idU, idU]);
                 resp.json(tareas);
             }
@@ -41,33 +41,41 @@ class TareasController {
     create(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
-            yield database_1.default.query('INSERT INTO tarea SET ?', [req.body]);
-            resp.json({ message: 'Proyect Saved' });
+            const result = yield database_1.default.query('INSERT INTO tarea SET ?', [req.body]);
+            const idT = result.insertId;
+            resp.json({ message: 'Tarea Saved', idT: idT });
         });
     }
     delete(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
             const { idT } = req.params;
-            yield database_1.default.query('DELETE FROM tarea WHERE idT =?', [idT]);
-            resp.json({ message: 'Proyect deleted' });
+            try {
+                yield database_1.default.query('DELETE FROM material WHERE idT = ?', [idT]);
+                yield database_1.default.query('DELETE FROM tarea WHERE idT = ?', [idT]);
+                resp.json({ message: 'Tarea deleted' });
+            }
+            catch (error) {
+                console.error(error);
+                resp.status(500).json({ message: 'Error retrieving tasks' });
+            }
         });
     }
     update(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
             const { idT } = req.params;
             yield database_1.default.query('UPDATE tarea SET? WHERE idT =?', [req.body, idT]);
-            resp.json({ message: 'Updating a proyects ' + req.params.id });
+            resp.json({ message: 'Updating a Tarea ' + req.params.id });
         });
     }
     getOne(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
             const { idT } = req.params;
-            const proyects = yield database_1.default.query('SELECT * FROM tarea WHERE idT = ?', [idT]);
-            if (proyects.length > 0) {
-                resp.json(proyects[0]);
+            const tarea = yield database_1.default.query('SELECT * FROM tarea WHERE idT = ?', [idT]);
+            if (tarea.length > 0) {
+                resp.json(tarea[0]);
             }
             else {
-                resp.status(404).json({ message: 'Proyect not found' });
+                resp.status(404).json({ message: 'Tarea not found' });
             }
         });
     }

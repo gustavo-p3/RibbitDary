@@ -14,7 +14,15 @@ import { NavNarLatComponent } from './components/navegacion/nav-nar-lat/nav-nar-
 import { ProyectosComponent } from './components/proyects/proyectos/proyectos.component';
 import { ProyectsService } from './services/proyects.service';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 
+// Define tus rutas aquí
+const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'proyectos', component: ProyectosComponent },
+  // Añade otras rutas aquí
+];
 
 @NgModule({
   declarations: [
@@ -33,11 +41,11 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,    
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(routes), // Asegúrate de que `routes` esté definido
   ],
   providers: [
     ProyectsService
-    
   ],
   bootstrap: [AppComponent]
 })

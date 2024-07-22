@@ -7,6 +7,7 @@ import { ComentariosComponent } from './components/comentarios/comentarios.compo
 import { ProyectosComponent } from './components/proyects/proyectos/proyectos.component';
 import { CreateProyectosComponent } from './components/proyects/create-proyectos/create-proyectos.component';
 import { CreateTareasComponent } from './components/proyects/create-tareas/create-tareas.component'; 
+import { NavigationComponent } from './components/navegacion/navigation/navigation.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -15,24 +16,24 @@ const routes: Routes = [
     redirectTo : '/presentacion',
     pathMatch : 'full'
   },
+
   //Presentacion
   {path:'presentacion', component: PresentacionComponent},
 
   //Routas de tareas
   { path: 'tareas/:idU/:idP', component: TareasComponent},
-  { path: 'tareas', component: TareasComponent},
+  //{ path: 'tareas', component: TareasComponent},
   { path: 'crear-tareas/:idU/:idP', component: CreateTareasComponent },
+
   //Comentarios
   {path: 'comentarios', component: ComentariosComponent},
+  
   //Rutas Proyectos
-  {path: 'proyectos', component: ProyectosComponent},
+  //{path: 'proyectos', component: ProyectosComponent},
   {path: 'proyectos/:idU', component: ProyectosComponent},
   {path: 'crear-proyectos', component:CreateProyectosComponent},
   {path: 'crear-proyectos/:idU', component:CreateProyectosComponent},
-  {path: 'edit-proyectos/edit/:idU/:idP', component:CreateProyectosComponent},
-
-  
-
+  {path: 'edit-proyectos/edit/:idU/:idP', component:CreateProyectosComponent}
 ];
 
 @NgModule({

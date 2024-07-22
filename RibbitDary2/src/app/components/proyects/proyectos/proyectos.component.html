@@ -22,9 +22,9 @@
             <p>{{proyect.idType}}</p>
             
             <h2>Persona Encargada:</h2>
-            <div class="users">
-              <img [src]="proyect.IconUserA" />
-              <p>{{proyect.idU}}</p>
+            <div class="users" *ngFor="let creador of creadorProyect">
+              <img [src]="creador.icono" />
+              <p>{{creador.nombres}}</p>
             </div>
           </div>
         </div>

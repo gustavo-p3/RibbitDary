@@ -26,8 +26,9 @@ class ProyectxcolabController {
             const { idP } = req.params;
             try {
                 const proyectos = yield database_1.default.query(`
-                SELECT proyectxcolab.* 
-                FROM proyectxcolab 
+                SELECT usuario.* 
+                FROM proyectxcolab INNER JOIN usuario
+                ON proyectxcolab.idColaborador = usuario.idU
                 WHERE proyectxcolab.idP = ?
                 `, [idP]);
                 resp.json(proyectos);
@@ -65,8 +66,33 @@ class ProyectxcolabController {
     create(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
-            yield database_1.default.query('INSERT INTO proyecto SET ?', [req.body]);
+            yield database_1.default.query('INSERT INTO proyectxcolab SET ?', [req.body]);
             resp.json({ message: 'Proyect Saved' });
+        });
+    }
+    /*
+        public async update(req : Request, resp : Response){
+            const {idP} = req.params;
+            await pool.query('UPDATE proyectxcolab SET ? WHERE idP =?', [req.body, idP]);
+            resp.json({message:'Updating a proyectxcolab ' + req.params.id});
+        }*/
+    delete(req, resp) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { idP, idColaborador } = req.params;
+            try {
+                const tareas = yield database_1.default.query('SELECT idT FROM tarea WHERE idP = ? AND idColaborador = ?', [idP, idColaborador]);
+                if (tareas.length > 0) {
+                    const idsTareas = tareas.map((tarea) => tarea.idT);
+                    yield database_1.default.query('DELETE FROM material WHERE idT IN (?)', [idsTareas]);
+                }
+                yield database_1.default.query('DELETE FROM tarea WHERE idP = ? AND idColaborador = ?', [idP, idColaborador]);
+                yield database_1.default.query('DELETE FROM proyectxcolab WHERE idP = ? AND idColaborador = ?', [idP, idColaborador]);
+                resp.json({ message: 'proyectxcolab deleted and related materials removed' });
+            }
+            catch (error) {
+                console.error('Error al borrar proyectxcolab y materiales:', error);
+                resp.status(500).json({ message: 'Error al borrar proyectxcolab y materiales' });
+            }
         });
     }
 }

@@ -19,14 +19,16 @@
       <!--<button class="ready-button">Listo</button> -->
       
       <div class="nav-button-1" *ngIf="router.url !== '/login'">
-        <a routerLink="/crear-proyectos">
+        <a [routerLink]="['/crear-proyectos', usuario.idU]" >
           <button>Crear Proyecto</button>
         </a>
       </div>
       
       <div class="user-info" *ngIf="router.url !== '/login'">
-        <img src="../../../../assets/img/Icon-User/icon-user-2.jpg" />
-        <span class="user-name">Nombre del Usuario</span>
+        <div *ngFor="let user of usuario">
+        <img [src]="user.icono" />
+        <span class="user-name">{{user.nombres}}</span>
+        </div>
       </div>
     </div>
   </nav>

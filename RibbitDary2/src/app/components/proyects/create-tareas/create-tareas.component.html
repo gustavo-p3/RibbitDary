@@ -1,8 +1,6 @@
 <form class="formProyectos">
   <div class="contentForm">
-    <!--Aqui estan las tareas y los proyectos-->
     <div class="contT">
-      <!--Para agregar tareas-->
       <div class="contTarea">
         <div class="contTarea1">
           <label for="NombreTarea">Nombre De la Tarea: </label>
@@ -23,7 +21,7 @@
             [(ngModel)]="tarea.descripcion"
             class="form_input"
           />
-
+          <!-- Aquí se agregan los materiales -->
           <label for="Materiales">Material:</label>
           <input
             type="text"
@@ -31,6 +29,7 @@
             [(ngModel)]="newMaterial"
             name="newMaterial"
           />
+          <!-- Botón que agrega los materiales al arreglo -->
           <button type="button" class="btn btn-primary" (click)="addMaterial()">
             Añadir Material
           </button>
@@ -40,10 +39,14 @@
             <h4>Materiales Añadidos:</h4>
             <ul class="list-group">
               <li
-                *ngFor="let material of tarea.Materiales"
+                *ngFor="let material of materiales"
                 class="list-group-item"
               >
-                {{ material.Material }}
+                {{ material.nombreMaterial }}
+                <!-- Botón para borrar los materiales -->
+                <button type="button" (click)="removeMaterial(material)">
+                  Eliminar
+                </button>
               </li>
             </ul>
           </div>
@@ -51,16 +54,15 @@
           <select
             id="PersonaEncarga"
             name="Persona Encargada"
-            [(ngModel)]="tarea.idColaboradores"
+            [(ngModel)]="tarea.idColaborador"
           >
             <option value="opcion1">Persona encargada</option>
-           <!-- <option
-              *ngFor="let user of proyects.PersonasInvolucradas"
-              value="{{ user.NombrePersonasInvolucradas }}"
+            <option
+              *ngFor="let user of colaboradores"
+              value="{{ user.idU }}"
             >
-              {{ user.NombrePersonasInvolucradas}}
+              {{ user.nombres }}
             </option>
--->
           </select>
           <div class="contTareasFechas">
             <div class="contTareasFechas1">

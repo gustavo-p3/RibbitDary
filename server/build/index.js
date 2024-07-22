@@ -10,7 +10,10 @@ const tareasRoutes_1 = __importDefault(require("./routes/tareasRoutes"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 const proyectxcolabRoutes_1 = __importDefault(require("./routes/proyectxcolabRoutes"));
-console.log('WORKS!!!!!');
+const usuarioRoutes_1 = __importDefault(require("./routes/usuarioRoutes"));
+const userxuserRoutes_1 = __importDefault(require("./routes/userxuserRoutes"));
+const materialesRoutes_1 = __importDefault(require("./routes/materialesRoutes"));
+const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -29,6 +32,10 @@ class Server {
         this.app.use('/api/proyects', proyectsRoutes_1.default);
         this.app.use('/api/tareas', tareasRoutes_1.default);
         this.app.use('/api/proyectxcolab', proyectxcolabRoutes_1.default);
+        this.app.use('/api/userxuser', userxuserRoutes_1.default);
+        this.app.use('/api/usuario', usuarioRoutes_1.default);
+        this.app.use('/api/materiales', materialesRoutes_1.default);
+        this.app.use('/api', authRoutes_1.default); // Agregado
     }
     start() {
         this.app.listen(this.app.get('port'), () => {
