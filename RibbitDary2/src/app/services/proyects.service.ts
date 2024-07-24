@@ -25,10 +25,13 @@ export class ProyectsService {
     return this.http.post<any>(this.loginUrl, { username, password });
   }
 
+
   //User x User
   getUserxUser(idU: string): Observable<string[]> {
     return this.http.get<string[]>(`${this.API_BASE_URL}/userxuser/${idU}`);
   }
+
+
   // Proyectos
   getProyects(): Observable<Proyect[]> {
     return this.http.get<Proyect[]>(`${this.API_BASE_URL}/proyects`);
@@ -46,12 +49,21 @@ export class ProyectsService {
     return this.http.post<Proyect>(`${this.API_BASE_URL}/proyects`, proyect);
   }
 
+  buscarProyect(idU: string, busqueda: string): Observable<any> {
+    return this.http.get<any>(`${this.API_BASE_URL}/proyects/busqueda/${idU}/${busqueda}`);
+  }
+
   deleteProyect(idP: string): Observable<Proyect> {
     return this.http.delete<Proyect>(`${this.API_BASE_URL}/proyects/${idP}`);
   }
 
   updateProyect(idP: number, updatedProyect: Proyect): Observable<Proyect> {
     return this.http.put<Proyect>(`${this.API_BASE_URL}/proyects/${idP}`, updatedProyect);
+  }
+
+  //Tipo de proyecto
+  getTipoproyecto(idType: string): Observable<string[]> {
+    return this.http.get<string[]>(`${this.API_BASE_URL}/tipoproyecto/${idType}`);
   }
 
   // Colaboradores

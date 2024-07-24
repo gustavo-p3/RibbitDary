@@ -8,6 +8,8 @@ class ProyectsController{
         resp.json(proyect);
         
     }
+
+
     public async listU(req: Request, resp: Response) {
         const { idU } = req.params;
         try {
@@ -93,22 +95,32 @@ class ProyectsController{
         resp.json({message:'Updating a proyects ' + req.params.id});
     }
 
-    /*
-        public async update(req : Request, resp : Response){
-        const {idP} = req.params;
+    public async buscarProyecto(req: Request, resp: Response): Promise<void> {
+        const { idU } = req.params;  // idU es el primer parámetro
+        const { b } = req.params;    // b es el segundo parámetro
+    
         try {
-            await pool.query('UPDATE proyecto SET ? WHERE idP =?', [req.body, idP]);
-            resp.json({message:'Updating a proyects ' + req.params.id});
-
-            await proyectxcolabController.delete;
+            // Buscar proyectos del usuario y los proyectos donde el usuario es colaborador
+            const proyectos = await pool.query(`
+                SELECT proyecto.* 
+                FROM proyecto 
+                WHERE proyecto.idU = ? AND proyecto.nameProyect LIKE ?
+        
+                UNION
+        
+                SELECT proyecto.* 
+                FROM proyecto 
+                INNER JOIN proyectxcolab 
+                ON proyecto.idP = proyectxcolab.idP 
+                WHERE proyectxcolab.idColaborador = ? AND proyecto.nameProyect LIKE ?`, [idU, `%${b}%`, idU, `%${b}%`]);
             
+            console.log('Proyectos encontrados:', proyectos); // Log para depuración
+            resp.json(proyectos);
         } catch (error) {
-            console.error('Error al obtener proyecto:', error);
-            resp.status(500).json({ message: 'Error interno del servidor' });
+            console.error('Error en la búsqueda:', error);
+            resp.status(500).json({ message: 'Error en el servidor' });
         }
-
-    }
-    */
+    }    
 
 }
 

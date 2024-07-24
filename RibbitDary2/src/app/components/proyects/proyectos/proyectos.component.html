@@ -4,6 +4,14 @@
 "></app-nav-nar-lat>
 
 <body class="body">
+    <!--Barra de busqueda-->
+    <form class="search-form" (ngSubmit)="buscarProyecto()">
+      <input type="text" placeholder="Buscar Proyecto" [(ngModel)]="searchTerm" name="searchTerm" class="search-input"/>
+      <button type="submit" class="search-button" >
+        <i class="fas fa-search"></i>
+      </button>
+    </form>
+
 <div class="content-Proyecto" *ngFor = "let proyect of proyects">
   <div class="cont-Proy-Info">
     <a [routerLink]="['/tareas', idU, proyect.idP]" class="tareasRutas">
@@ -25,7 +33,9 @@
         <div>
           <div class="usersC">
             <h2>Tipo de proyecto:</h2>
-            <p>{{proyect.idType}}</p>
+            <div *ngFor="let tP of tipoProyecto">
+            <p>{{tP.tipoProyecto}}</p>
+            </div>
             
             <h2>Persona Encargada:</h2>
             <div class="users" *ngFor="let creador of creadorProyect">

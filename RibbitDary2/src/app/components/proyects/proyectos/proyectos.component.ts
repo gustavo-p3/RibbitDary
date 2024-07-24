@@ -5,14 +5,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-proyectos',
   templateUrl: './proyectos.component.html',
-  styleUrls: ['./proyectos.component.css']  // Corregido de styleUrl a styleUrls
+  styleUrls: ['./proyectos.component.css']
 })
 export class ProyectosComponent implements OnInit {
   @HostBinding('class') classes = 'row';
-  proyects: any = []; // Tipado adecuado para el arreglo de proyectos
+  proyects: any = [];
   idU: string | null = null;
   creadorProyect: any = {};
   user: any = [];
+  tipoProyecto: any = [];
+  searchTerm: string = '';
 
   constructor(
     private proyectsService: ProyectsService,
@@ -20,10 +22,11 @@ export class ProyectosComponent implements OnInit {
     public router: Router) { }
 
   ngOnInit(): void {
-    this.getProyects(); // Obtener proyectos al iniciar la página
-    this.getUser(); 
-
+    // Obtener proyectos al iniciar la página
+    this.getUser();
+    this.getProyects();
   }
+
   deleteProyect(idP: string) {
     console.log(idP);
 
@@ -35,23 +38,24 @@ export class ProyectosComponent implements OnInit {
       err => console.error(err)
     );
   }
+
   getProyects() {
     this.idU = this.route.snapshot.paramMap.get('idU');
 
     if (this.idU) {
-
       this.proyectsService.getProyect(this.idU).subscribe(
         resp => {
           this.proyects = resp;
           this.proyects.forEach((proyect: any) => {
             this.getCreador(proyect.idU);
+            this.getTipoProyecto(proyect.idType);
           });
-
         },
         err => console.error('Error al obtener proyectos:', err)
       );
     }
   }
+
   getCreador(idU: string) {
     this.proyectsService.getUsuario(idU).subscribe(
       resp => {
@@ -59,7 +63,6 @@ export class ProyectosComponent implements OnInit {
       },
       err => console.error('Error al obtener usuario:', err)
     );
-
   }
 
   getUser() {
@@ -73,5 +76,34 @@ export class ProyectosComponent implements OnInit {
       );
     }
   }
+  getTipoProyecto(idType : string) {
+      this.proyectsService.getTipoproyecto(idType).subscribe(
+        resp => {
+          this.tipoProyecto = resp;
+        },
+        err => console.error('Error al obtener usuario:', err)
+      );
+  }
+//Buscar Proyecto
+  buscarProyecto() {
+    const idU = this.route.snapshot.paramMap.get('idU');
+    if (idU && this.searchTerm.trim()) { // Verifica que searchTerm no esté vacío
+      this.proyectsService.buscarProyect(idU, this.searchTerm).subscribe(
+        resp => {
+          this.proyects = resp;
+          this.proyects.forEach((proyect: any) => {
+            this.getCreador(proyect.idU);
+          });
+        },
+        error => {
+          console.error('Error en la búsqueda:', error);
+        }
+      );
+    } else {
+      // Si searchTerm está vacío, vuelve a cargar todos los proyectos
+      this.getProyects();
+    }
+  }
 
+  
 }

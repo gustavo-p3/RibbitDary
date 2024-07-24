@@ -9,6 +9,7 @@ import usuarioRoutes from './routes/usuarioRoutes';
 import userxuserRoutes from './routes/userxuserRoutes';
 import materialesRoutes from './routes/materialesRoutes';
 import authRoutes from './routes/authRoutes';
+import tipoProyectoRoutes from './routes/tipoProyectRoutes';
 
 class Server {
     public app: Application;
@@ -35,7 +36,8 @@ class Server {
         this.app.use('/api/userxuser', userxuserRoutes);
         this.app.use('/api/usuario', usuarioRoutes);
         this.app.use('/api/materiales', materialesRoutes);
-        this.app.use('/api', authRoutes); // Agregado
+        this.app.use('/api/tipoproyecto', tipoProyectoRoutes);
+        this.app.use('/api', authRoutes); 
     }
 
     start(): void {

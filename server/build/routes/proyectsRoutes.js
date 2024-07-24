@@ -16,6 +16,8 @@ class ProyectsRoutes {
         this.router.delete('/:idP', proyectsController_1.proyectsController.delete);
         this.router.put('/:idP', proyectsController_1.proyectsController.update);
         this.router.get('/:idU/:idP', proyectsController_1.proyectsController.getOne);
+        // En tu archivo de enrutador (por ejemplo, `proyects.routes.ts`)
+        this.router.get('/busqueda/:idU/:b', proyectsController_1.proyectsController.buscarProyecto);
     }
 }
 const proyectsRoutes = new ProyectsRoutes;

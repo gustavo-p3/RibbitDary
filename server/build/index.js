@@ -14,6 +14,7 @@ const usuarioRoutes_1 = __importDefault(require("./routes/usuarioRoutes"));
 const userxuserRoutes_1 = __importDefault(require("./routes/userxuserRoutes"));
 const materialesRoutes_1 = __importDefault(require("./routes/materialesRoutes"));
 const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
+const tipoProyectRoutes_1 = __importDefault(require("./routes/tipoProyectRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -35,7 +36,8 @@ class Server {
         this.app.use('/api/userxuser', userxuserRoutes_1.default);
         this.app.use('/api/usuario', usuarioRoutes_1.default);
         this.app.use('/api/materiales', materialesRoutes_1.default);
-        this.app.use('/api', authRoutes_1.default); // Agregado
+        this.app.use('/api/tipoproyecto', tipoProyectRoutes_1.default);
+        this.app.use('/api', authRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

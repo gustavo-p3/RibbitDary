@@ -103,5 +103,32 @@ class ProyectsController {
             resp.json({ message: 'Updating a proyects ' + req.params.id });
         });
     }
+    buscarProyecto(req, resp) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { idU } = req.params; // idU es el primer parámetro
+            const { b } = req.params; // b es el segundo parámetro
+            try {
+                // Buscar proyectos del usuario y los proyectos donde el usuario es colaborador
+                const proyectos = yield database_1.default.query(`
+                SELECT proyecto.* 
+                FROM proyecto 
+                WHERE proyecto.idU = ? AND proyecto.nameProyect LIKE ?
+        
+                UNION
+        
+                SELECT proyecto.* 
+                FROM proyecto 
+                INNER JOIN proyectxcolab 
+                ON proyecto.idP = proyectxcolab.idP 
+                WHERE proyectxcolab.idColaborador = ? AND proyecto.nameProyect LIKE ?`, [idU, `%${b}%`, idU, `%${b}%`]);
+                console.log('Proyectos encontrados:', proyectos); // Log para depuración
+                resp.json(proyectos);
+            }
+            catch (error) {
+                console.error('Error en la búsqueda:', error);
+                resp.status(500).json({ message: 'Error en el servidor' });
+            }
+        });
+    }
 }
 exports.proyectsController = new ProyectsController();
