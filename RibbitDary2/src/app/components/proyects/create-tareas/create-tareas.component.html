@@ -1,98 +1,117 @@
-<form class="formProyectos">
-  <div class="contentForm">
-    <div class="contT">
-      <div class="contTarea">
-        <div class="contTarea1">
-          <label for="NombreTarea">Nombre De la Tarea: </label>
-          <input
-            type="text"
-            id="NombreTarea"
-            name="NombreTarea"
-            input=" Nombre del Tarea"
-            [(ngModel)]="tarea.nomTarea"
-            class="form_input"
-          />
-          <label for="Descripcion">Descripcion: </label>
-          <input
-            type="text"
-            id="Descripcion"
-            name="Descripcion"
-            input="Descripcion"
-            [(ngModel)]="tarea.descripcion"
-            class="form_input"
-          />
-          <!-- Aquí se agregan los materiales -->
-          <label for="Materiales">Material:</label>
-          <input
-            type="text"
-            id="Materiales"
-            [(ngModel)]="newMaterial"
-            name="newMaterial"
-          />
-          <!-- Botón que agrega los materiales al arreglo -->
-          <button type="button" class="btn btn-primary" (click)="addMaterial()">
-            Añadir Material
-          </button>
+<header><app-navigation></app-navigation></header>
+<app-nav-nar-lat></app-nav-nar-lat>
 
-          <!-- Lista de materiales añadidos -->
-          <div class="materiales-lista">
-            <h4>Materiales Añadidos:</h4>
-            <ul class="list-group">
-              <li
-                *ngFor="let material of materiales"
-                class="list-group-item"
-              >
-                {{ material.nombreMaterial }}
-                <!-- Botón para borrar los materiales -->
-                <button type="button" (click)="removeMaterial(material)">
-                  Eliminar
-                </button>
-              </li>
-            </ul>
-          </div>
+<body class="body">
+  <form class="formProyectos">
+    <div class="contentForm">
+      <label for="NombreTarea">Nombre De la Tarea: </label>
+      <input
+        type="text"
+        id="NombreTarea"
+        name="NombreTarea"
+        input=" Nombre del Tarea"
+        [(ngModel)]="tarea.nomTarea"
+        class="form_input"
+      />
+      <label for="Descripcion">Descripcion: </label>
+      <input
+        type="text"
+        id="Descripcion"
+        name="Descripcion"
+        input="Descripcion"
+        [(ngModel)]="tarea.descripcion"
+        class="form_input"
+      />
+      <!-- Aquí se agregan los materiales -->
+      <label for="Materiales">Material:</label>
+      <input
+        type="text"
+        id="Materiales"
+        [(ngModel)]="newMaterial"
+        name="newMaterial"
+      />
+      <!-- Botón que agrega los materiales al arreglo -->
+      <button type="button" class="btn btn-primary" (click)="addMaterial()">
+        Añadir Material
+      </button>
 
-          <select
-            id="PersonaEncarga"
-            name="Persona Encargada"
-            [(ngModel)]="tarea.idColaborador"
-          >
-            <option value="opcion1">Persona encargada</option>
-            <option
-              *ngFor="let user of colaboradores"
-              value="{{ user.idU }}"
-            >
-              {{ user.nombres }}
-            </option>
-          </select>
-          <div class="contTareasFechas">
-            <div class="contTareasFechas1">
-              <label for="FechaInicioP">Fecha de Inicio: </label>
-              <input
-                type="date"
-                id="FechaInicioP"
-                name="Fecha de Inicio"
-                input="Fecha de Inicio"
-                class="form_input"
-                [(ngModel)]="tarea.fechaI"
-              />
-            </div>
-            <div class="contTareasFechas1">
-              <label for="FechaFinalP">Fecha Final: </label>
-              <input
-                type="date"
-                id="FechaFinalP"
-                name="Fecha Final"
-                input="Fecha Final"
-                class="form_input"
-                [(ngModel)]="tarea.fechaF"
-              />
-            </div>
-          </div>
+      <h4>Selecciona a la persona que hara la tarea:</h4>
+
+      <select
+        [(ngModel)]="tarea.idColaborador"
+        id="PersonaEncarga"
+        name="Persona Encargada"
+      >
+        <option
+          *ngFor="let creador of creadorProyect"
+          value="{{ creador.idU }}"
+        >
+          Tu
+        </option>
+        <option *ngFor="let user of colaboradores" value="{{ user.idU }}">
+          {{ user.nombres }}
+        </option>
+      </select>
+      <div class="contTareasFechas">
+        <div class="contTareasFechas1">
+          <label for="FechaInicioP">Fecha de Inicio: </label>
+          <input
+            type="date"
+            id="FechaInicioP"
+            name="Fecha de Inicio"
+            input="Fecha de Inicio"
+            class="form_input"
+            [(ngModel)]="tarea.fechaI"
+          />
+        </div>
+        <div class="contTareasFechas1">
+          <label for="FechaFinalP">Fecha Final: </label>
+          <input
+            type="date"
+            id="FechaFinalP"
+            name="Fecha Final"
+            input="Fecha Final"
+            class="form_input"
+            [(ngModel)]="tarea.fechaF"
+          />
         </div>
       </div>
+      <button type="submit" class="submit-button" (click)="edit ? updateTarea() : saveNewTarea()">
+        Subir tarea
+      </button>
     </div>
-  </div>
-  <button type="submit" class="submit-button" (click)="saveNewTarea()">
-    Subir tarea
-  </button>
-</form>
+
+    <!-- Lista de materiales añadidos -->
+    <div class="materiales-lista">
+      <h4>Materiales Añadidos:</h4>
+      <ul class="list-group">
+        <li *ngFor="let material of materiales" class="list-group-item">
+          {{ material.nombreMaterial }}
+          <!-- Botón para borrar los materiales -->
+          <button
+            type="button"
+            class="btn-remove"
+            (click)="removeMaterial(material)"
+          >
+            <i class="fas fa-trash"></i>
+          </button>
+        </li>
+      </ul>
+
+      <ul class="list-group"  *ngIf="edit">
+        <li *ngFor="let material of materialSelect" class="list-group-item">
+          {{ material.nombreMaterial }}
+          <!-- Botón para borrar los materiales -->
+          <button
+            type="button"
+            class="btn-remove"
+            (click)="deleteMateriales(material.idMt)"
+          >
+            <i class="fas fa-trash"></i>
+          </button>
+        </li>
+      </ul>
+    </div>
+    
+  </form>
+</body>

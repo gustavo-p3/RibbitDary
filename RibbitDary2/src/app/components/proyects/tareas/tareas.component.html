@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tarea</title>
-  </head>
-  <body class="bodyT">
-    <h1>Tareas:</h1>
+<header><app-navigation></app-navigation></header>
+<app-nav-nar-lat></app-nav-nar-lat>
 
+<body class="body">
+  <div class="bodyT">
+    <h1>Tareas:</h1>
     <div class="containerTa">
       <div class="containerT">
         <div class="container-Tarea" *ngFor="let tarea of tareas">
@@ -48,14 +44,18 @@
               </div>
             </div>
           </div>
-          <div class="edit-delete-buttons">
-            <button><i class="fas fa-edit"></i></button>
+          <div *ngFor="let user of user">
+          <div class="edit-delete-buttons" *ngIf="user.idTipo !== 3">
+            <button><i class="fas fa-edit" [routerLink]="['/edit-tarea/edit/', tarea.idU, tarea.idP, tarea.idT]"></i></button>
             <button (click)="deleteTarea(tarea.idT)"><i class="fas fa-trash"></i></button>
+          </div>
           </div>
         </div>
 
-        <div class="add-task-button" [routerLink]="['/crear-tareas', idU, idP]">
+        <div *ngFor="let user of user">
+        <div *ngIf="user.idTipo !== 3" class="add-task-button" [routerLink]="['/crear-tareas', idU, idP]">
           +
+        </div>
         </div>
       </div>
 
@@ -94,5 +94,6 @@
         </div>
       </div>
     </div>
+  </div>
   </body>
-</html>
+

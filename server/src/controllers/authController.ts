@@ -14,13 +14,9 @@ class AuthController {
                 return res.status(401).json({ message: 'Usuario no encontrado' });
             }
 
-            // Comparar la contraseña proporcionada con la contraseña encriptada
-            const isMatch = await bcrypt.compare(password, user.password);
-
-            if (!isMatch) {
+            if (!bcrypt.compare(password, user.password)) {
                 return res.status(401).json({ message: 'Contraseña incorrecta' });
             }
-
             // Autenticación exitosa
             res.json({ message: 'Login exitoso', userId: user.idU });
         } catch (error) {

@@ -2,28 +2,34 @@
     width: 100%;
     margin-top: 2%;
     font-family: 'CascadiaMonoExtraLight', monospace;
-}
- /*Contenido del formulario*/
-.contentForm{
     display: flex;
-    margin-top: 2%;
-    width: 100%;
-    height: 100%;
+    gap: 20px;
+ 
 }
+/* Contenido del formulario */
 
-.contT{
+
+.contentForm{
     display: inline;
-    height: 50%;
     width: 70%;
+    background-image: url('../../../../assets/img/fondo-Tareas.jpg');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    margin-bottom: 4%;
+    border-radius: 20px;
+    padding: 3%;
+    display: grid;
+    flex-direction: column; 
    
 }
 
-.contT label{
+.contentForm label{
     font-size: 1.3em;
     text-align: center;
     margin-bottom: 1%;
 }
-.contT input{
+.contentForm input{
     background: white;
     border: none;
     color: #000000;
@@ -35,7 +41,7 @@
 
 
 
-.contT select{
+.contentForm select{
     background-color: #95d1f8ec;
     border: none;
     color: #000000;
@@ -44,22 +50,6 @@
     text-align: center;
     margin-bottom: 1%;
 
-}
-/*Contenido del proyecto*/
-
-.contTarea{
-    background-image: url('../../../../assets/img/fondo-Tareas.jpg');
-    background-size: cover;
-    background-position: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-    margin-bottom: 4%;
-    border-radius: 20px;
-}
-.contTarea1{
-    padding: 3%;
-    display: grid;
-    flex-direction: column;
-  
 }
 
 /*Contenido de las fechas*/
@@ -79,18 +69,13 @@
 .submit-button {
     display: inline-block;
     padding: 10px 20px;
-    margin: 20px;
+    margin-top: 30px;
     font-size: 1em;
     color: #fff;
     background-color: #82c45d;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    height: 50px;
-    width: 160px;
     font-family: 'CascadiaMonoExtraLight', monospace;
   }
 
@@ -132,20 +117,44 @@
     background-color: #28a745;
     color: white;
   }
-  
-  .materiales-lista {
-    margin-top: 20px;
-  }
-  
-  .list-group {
-    list-style-type: none;
-    padding-left: 0;
-  }
-  
-  .list-group-item {
-    background-color: #f3f3f3;
-    border: 1px solid #ddd;
-    margin-bottom: 5px;
-    padding: 10px;
-    border-radius: 4px;
-  }
+
+  /*Materiales*/
+/* Materiales */
+.materiales-lista {
+  background-color: #a0f8b2;
+  width: 40%;
+  border-radius: 10px;
+  padding: 10px 20px;
+  height: 100%;
+}
+
+.list-group {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f3f3f3;
+  border: 1px solid #ddd;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.btn-remove {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+}
+
+.btn-remove:hover {
+  color: darkred;
+}
+
+.btn-remove i {
+  font-size: 18px;
+}

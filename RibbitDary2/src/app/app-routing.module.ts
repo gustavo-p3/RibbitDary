@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'tareas/:idU/:idP', component: TareasComponent},
   //{ path: 'tareas', component: TareasComponent},
   { path: 'crear-tareas/:idU/:idP', component: CreateTareasComponent },
+  {path: 'edit-tarea/edit/:idU/:idP/:idT', component:CreateTareasComponent},
 
   //Comentarios
   {path: 'comentarios', component: ComentariosComponent},

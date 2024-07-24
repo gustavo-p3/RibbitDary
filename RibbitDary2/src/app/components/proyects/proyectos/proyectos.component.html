@@ -1,3 +1,9 @@
+<header><app-navigation *ngIf="router.url !== '/presentacion'"></app-navigation></header>
+<app-nav-nar-lat *ngIf="router.url !== '/presentacion' && router.url !== '/comentarios'
+&& router.url !== '/login'
+"></app-nav-nar-lat>
+
+<body class="body">
 <div class="content-Proyecto" *ngFor = "let proyect of proyects">
   <div class="cont-Proy-Info">
     <a [routerLink]="['/tareas', idU, proyect.idP]" class="tareasRutas">
@@ -43,7 +49,8 @@
         </p>
       </div>
     </div>
-    <div class="project-actions">
+    <div *ngFor="let user of user">
+    <div class="project-actions" *ngIf="user.idTipo !== 3">
       <button class="btn btn-edit btn-cute" [routerLink]="['/edit-proyectos/edit/', proyect.idU, proyect.idP]" >
         <span class="btn-icon">✏️</span> Editar
       </button>
@@ -51,6 +58,8 @@
         <span class="btn-icon">🗑️</span> Borrar
       </button>
     </div>
+    </div>
   </div>
 
 </div>
+</body>

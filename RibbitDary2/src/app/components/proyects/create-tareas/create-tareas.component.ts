@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Tarea, Material } from '../../../models/Proyect';
 import { ProyectsService } from '../../../services/proyects.service';
 
@@ -19,38 +19,93 @@ export class CreateTareasComponent implements OnInit {
   };
 
   newMaterial: string = '';
+  idMaterialSelect: string[] = [];
   materiales: Material[] = [];
+  materialSelect: any = [];
 
   proyects: any = [];
   colaboradores: any = [];
+  creadorProyect: any = [];
+  edit: boolean = false;
 
   constructor(
     private proyectsService: ProyectsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
     const idP = this.route.snapshot.paramMap.get('idP');
-    if (idP) {
-      this.proyectsService.getProyect(idP).subscribe(
-        resp => {
-          this.proyects = resp;
-        },
-        err => console.error('Error al obtener proyectos:', err)
-      );
+    const idU = this.route.snapshot.paramMap.get('idU');
+    const idT = this.route.snapshot.paramMap.get('idT');
 
-      this.proyectsService.getColaboradores(idP).subscribe(
+    if (idP && idU) {
+      this.getProyect(idP);
+      this.getColaboradores(idP);
+      this.getUsuario(idU);
+    }
+
+    if (idT && idP && idU) {
+      this.getTarea(idU, idP, idT);
+    }
+    this.getMateriales();
+  }
+
+  //Get cosas
+  async getProyect(idP: string) {
+    this.proyectsService.getProyect(idP).subscribe(
+      resp => {
+        this.proyects = resp;
+      },
+      err => console.error('Error al obtener proyectos:', err)
+    );
+  }
+
+  async getColaboradores(idP: string) {
+    this.proyectsService.getColaboradores(idP).subscribe(
+      resp => {
+        this.colaboradores = resp;
+      },
+      err => console.error('Error al obtener colaboradores:', err)
+    );
+  }
+
+  async getUsuario(idU: string) {
+    this.proyectsService.getUsuario(idU).subscribe(
+      resp => {
+        this.creadorProyect = resp;
+      },
+      err => console.error('Error al obtener usuario:', err)
+    )
+  }
+
+  async getTarea(idU: string, idP: string, idT: string) {
+    this.proyectsService.getTarea(idU, idP, idT).subscribe(
+      resp => {
+        console.log(resp);
+        this.tarea = resp;
+        this.edit = true;
+      },
+      err => console.error('Error al obtener tarea:', err)
+    )
+  }
+
+  async getMateriales() {
+    const idT = this.route.snapshot.paramMap.get('idT');
+    if (idT) {
+      this.proyectsService.getMaterialesTarea(idT).subscribe(
         resp => {
-          this.colaboradores = resp;
+          this.materialSelect = resp;
         },
-        err => console.error('Error al obtener colaboradores:', err)
-      );
+        err => console.error('Error al obtener materiales:', err)
+      )
     }
   }
 
+  //Añafir y editar, y gurar cosas y borrar
   addMaterial() {
     if (this.newMaterial) {
-      this.materiales.push({ nombreMaterial: this.newMaterial, idT: '' });
+      this.materiales.push({ nombreMaterial: this.newMaterial });
       this.newMaterial = '';
     }
   }
@@ -83,8 +138,7 @@ export class CreateTareasComponent implements OnInit {
     }
   }
 
-  saveNewMaterials(idT: string, idP: string ){
-
+  saveNewMaterials(idT: string, idP: string) {
     this.materiales.forEach(material => {
       material.idT = idT;
       material.idP = idP;
@@ -96,4 +150,39 @@ export class CreateTareasComponent implements OnInit {
       );
     });
   }
+
+  async updateTarea() {
+    const number: number = Number(this.tarea.idT);
+    const number2: number = Number(this.tarea.idP);
+
+    try {
+      this.proyectsService.updateTarea(number, this.tarea).subscribe(
+        resp => {
+          console.log(resp);
+          this.router.navigate(['/tareas']);
+        },
+        err => console.error('Error al actualizar tarea:', err)
+      )
+
+      for (const idMt of this.idMaterialSelect) {
+        this.proyectsService.deleteMaterial(idMt).subscribe(
+          resp => {
+            console.log(resp);
+            this.getMateriales();
+          },
+          err => console.error(err)
+        );
+      }
+
+      this.saveNewMaterials(number.toString(), number2.toString());
+    } catch (err) {
+      console.error('Error al actualizar la tarea:', err);
+    }
+
+  }
+
+  deleteMateriales(idMt: string) {
+    this.idMaterialSelect.push(idMt);
+  }
+
 }

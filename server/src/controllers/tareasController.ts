@@ -50,13 +50,15 @@ class TareasController{
 
     public async update(req : Request, resp : Response){
         const {idT} = req.params;
-        await pool.query('UPDATE tarea SET? WHERE idT =?', [req.body, idT]);
+        await pool.query('UPDATE tarea SET ? WHERE idT = ?', [req.body, idT]);
         resp.json({message:'Updating a Tarea ' + req.params.id});
     }
 
     public async getOne(req : Request, resp : Response){
+        const {idU} = req.params;
+        const {idP} = req.params;
         const {idT} = req.params;
-        const tarea = await pool.query('SELECT * FROM tarea WHERE idT = ?', [idT]);
+        const tarea = await pool.query('SELECT * FROM tarea WHERE idU = ? AND idP = ? AND idT = ?', [idU, idP, idT]);
 
         if(tarea.length > 0){
             resp.json(tarea[0]);

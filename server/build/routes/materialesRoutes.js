@@ -11,7 +11,7 @@ class MaterialesRoutes {
         this.router.get('/', materialesController_1.matriealesController.list);
         this.router.get('/:idT', materialesController_1.matriealesController.getList);
         this.router.post('/', materialesController_1.matriealesController.create);
-        this.router.put('/:idMt', materialesController_1.matriealesController.delete);
+        this.router.delete('/:idMt', materialesController_1.matriealesController.delete);
     }
 }
 const materialesRoutes = new MaterialesRoutes;

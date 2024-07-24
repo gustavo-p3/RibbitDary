@@ -41,7 +41,7 @@ class MatriealesController {
     create(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield database_1.default.query('INSERT INTO material SET?', [req.body]);
+                yield database_1.default.query('INSERT INTO material SET ?', [req.body]);
                 resp.json({ message: 'Material saved' });
             }
             catch (error) {
@@ -54,7 +54,7 @@ class MatriealesController {
         return __awaiter(this, void 0, void 0, function* () {
             const { idMt } = req.params;
             try {
-                yield database_1.default.query('DELETE FROM material WHERE idMt =?', [idMt]);
+                yield database_1.default.query('DELETE FROM material WHERE idMt = ?', [idMt]);
                 resp.json({ message: 'Material deleted' });
             }
             catch (err) {

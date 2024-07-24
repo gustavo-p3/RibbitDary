@@ -1,11 +1,9 @@
-<app-navigation *ngIf="router.url !== '/presentacion'"></app-navigation>
-<app-nav-nar-lat *ngIf="router.url !== '/presentacion' && router.url !== '/comentarios'
-&& router.url !== '/login'
-"></app-nav-nar-lat>
 
-<div [ngClass]="{'body': router.url !== '/presentacion' && router.url !== '/comentarios'
+
+<!--<div [ngClass]="{'body': router.url !== '/presentacion' && router.url !== '/comentarios'
     && router.url !== '/login'}">
-  
+</div>-->
+
+
 <router-outlet></router-outlet>
-</div>
 

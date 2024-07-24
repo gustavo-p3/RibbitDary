@@ -14,6 +14,7 @@ export class TareasComponent implements OnInit {
   colaboradores: any = [];
   materiales: any = {};
   colaboradorTareas: any = {};
+  user: any = [];
 
   idP: string | null = null;
   idU: string | null = null;
@@ -31,8 +32,20 @@ export class TareasComponent implements OnInit {
       this.getColaboradores(this.idP);
       this.getTareas();
       this.getProyectT(this.idU, this.idP);
+      this.getUser(this.idU);
     } else {
       console.error('No se pudo obtener el idP o idU de la ruta.');
+    }
+  }
+
+  getUser(idU : string){
+    if (idU) {
+      this.proyectsService.getUsuario(idU).subscribe(
+        resp => {
+          this.user = resp;
+        },
+        err => console.error('Error al obtener usuario:', err)
+      );
     }
   }
 
@@ -50,7 +63,7 @@ export class TareasComponent implements OnInit {
     this.idU = this.route.snapshot.paramMap.get('idU');
 
     if (this.idP && this.idU) {
-      this.proyectsService.getTarea(this.idU, this.idP).subscribe(
+      this.proyectsService.getTareaP(this.idU, this.idP).subscribe(
         resp => {
           this.tareas = resp;
           this.tareas.forEach((tarea: any) => {
@@ -94,7 +107,6 @@ export class TareasComponent implements OnInit {
 
   deleteTarea(idT: string) {
     console.log(idT);
-
     this.proyectsService.deleteTarea(idT).subscribe(
       resp => {
         console.log(resp);

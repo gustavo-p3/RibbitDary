@@ -11,23 +11,26 @@
 </div>
 
 
-    <div class="nav-info" *ngIf="router.url !== '/login'">
+    <div class="nav-info" *ngFor="let user of usuario">
       <a routerLink="/comentarios">
         <i class="fas fa-exclamation-triangle"></i>
       </a>
       <i class="fas fa-bell" routerLink="/politicas"></i>
       <!--<button class="ready-button">Listo</button> -->
       
-      <div class="nav-button-1" *ngIf="router.url !== '/login'">
-        <a [routerLink]="['/crear-proyectos', usuario.idU]" >
-          <button>Crear Proyecto</button>
-        </a>
+      <div class="nav-button-1" *ngIf="router.url !== '/login' && user.idTipo !== 3">
+        <div>
+          <a [routerLink]="['/crear-proyectos', user.idU]">
+            <button>Crear Proyecto</button>
+          </a>
+        </div>
       </div>
       
-      <div class="user-info" *ngIf="router.url !== '/login'">
-        <div *ngFor="let user of usuario">
+      
+      <div  *ngIf="router.url !== '/login'">
+        <div class="user-info" *ngFor="let user of usuario">
         <img [src]="user.icono" />
-        <span class="user-name">{{user.nombres}}</span>
+        <p class="user-name">{{user.nombres}}</p>
         </div>
       </div>
     </div>

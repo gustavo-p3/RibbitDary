@@ -14,7 +14,7 @@ class TareasRoutes {
         this.router.post('/', tareasController_1.tareasController.create);
         this.router.delete('/:idT', tareasController_1.tareasController.delete);
         this.router.put('/:idT', tareasController_1.tareasController.update);
-        //this.router.get('/:idT', tareasController.getOne);
+        this.router.get('/:idU/:idP/:idT', tareasController_1.tareasController.getOne);
         this.router.get('/:idU/:idP', tareasController_1.tareasController.listP);
     }
 }

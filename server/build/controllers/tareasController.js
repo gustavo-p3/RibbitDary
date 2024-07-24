@@ -63,14 +63,16 @@ class TareasController {
     update(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
             const { idT } = req.params;
-            yield database_1.default.query('UPDATE tarea SET? WHERE idT =?', [req.body, idT]);
+            yield database_1.default.query('UPDATE tarea SET ? WHERE idT = ?', [req.body, idT]);
             resp.json({ message: 'Updating a Tarea ' + req.params.id });
         });
     }
     getOne(req, resp) {
         return __awaiter(this, void 0, void 0, function* () {
+            const { idU } = req.params;
+            const { idP } = req.params;
             const { idT } = req.params;
-            const tarea = yield database_1.default.query('SELECT * FROM tarea WHERE idT = ?', [idT]);
+            const tarea = yield database_1.default.query('SELECT * FROM tarea WHERE idU = ? AND idP = ? AND idT = ?', [idU, idP, idT]);
             if (tarea.length > 0) {
                 resp.json(tarea[0]);
             }

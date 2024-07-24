@@ -54,33 +54,11 @@ export class CreateProyectosComponent implements OnInit {
       console.error('No se pudo obtener el idP de la ruta.');
     }
 
-    if (this.idU) {
-      this.proyectsService.getUserxUser(this.idU).subscribe(
-        resp => {
-          this.colaDispo = resp;
-        },
-        err => console.log(err)
-      );
-    } else {
-      console.error('No se pudo obtener el idP de la ruta.');
-    }
+    this.getUserxUser();
     this.getColaboradores();
   }
 
-
-  toggleColaboradorSeleccionado(idColaborador: string, event: Event) {
-    const isChecked = (event.target as HTMLInputElement).checked;
-    if (isChecked) {
-      if (!this.colaboradoresSeleccionados.includes(idColaborador)) {
-        this.colaboradoresSeleccionados.push(idColaborador);
-      }
-    } else {
-      this.colaboradoresSeleccionados = this.colaboradoresSeleccionados.filter(id => id !== idColaborador);
-    }
-  }
-
-
-
+  //Obtener cosas del proyecto
   getColaboradores() {
     this.idP = this.route.snapshot.paramMap.get('idP');
 
@@ -96,26 +74,31 @@ export class CreateProyectosComponent implements OnInit {
     }
   }
 
-  async saveNewProyect() {
-    const idU = this.route.snapshot.paramMap.get('idU');
-
-    if (idU) {
-      this.proyect.idU = idU;
-
-      try {
-        const resp = await this.proyectsService.saveProyect(this.proyect).toPromise();
-        console.log('Proyecto guardado:', resp);
-
-        if (resp && resp.idP) {
-          const idP = resp.idP.toString();
-          this.saveNewProyectxColab(idP);
-        }
-      } catch (err) {
-        console.error('Error al guardar proyecto:', err);
-      }
+  getUserxUser() {
+    this.idU = this.route.snapshot.paramMap.get('idU');
+    if (this.idU) {
+      this.proyectsService.getUserxUser(this.idU).subscribe(
+        resp => {
+          this.colaDispo = resp;
+        },
+        err => console.log(err)
+      );
+    } else {
+      console.error('No se pudo obtener el idP de la ruta.');
     }
   }
 
+  //Guardar cosas
+  toggleColaboradorSeleccionado(idColaborador: string, event: Event) {
+    const isChecked = (event.target as HTMLInputElement).checked;
+    if (isChecked) {
+      if (!this.colaboradoresSeleccionados.includes(idColaborador)) {
+        this.colaboradoresSeleccionados.push(idColaborador);
+      }
+    } else {
+      this.colaboradoresSeleccionados = this.colaboradoresSeleccionados.filter(id => id !== idColaborador);
+    }
+  }
 
   saveNewProyectxColab(idP: string) {
     if (idP && this.colaboradoresSeleccionados.length > 0) {
@@ -131,32 +114,38 @@ export class CreateProyectosComponent implements OnInit {
           err => console.error('Error al guardar colaborador en el proyecto:', err)
         );
       });
-
-      // Redirigir después de un retraso para asegurar que todos los colaboradores se guarden
-      setTimeout(() => {
-        this.router.navigate(['/proyects']);
-      }, 1000);
-
     } else {
       this.router.navigate(['/proyects']);
     }
   }
 
   deleteColaborador(idU: string) {
-    this.idP = this.route.snapshot.paramMap.get('idP');
-
-    if (this.idP) {
-      // Agregar el ID del colaborador a la lista temporal
-      this.tempDeletedColaboradores.push(idU);
-
-      // Actualizar la lista de colaboradores temporalmente
-      this.getColaboradores();
-    }
+    this.tempDeletedColaboradores.push(idU);
   }
 
 
-  async updateProyect() {
+//Proyecto Guardar 
+  async saveNewProyect() {
+    const idU = this.route.snapshot.paramMap.get('idU');
 
+    if (idU) {
+      this.proyect.idU = idU;
+      try {
+        const resp = await this.proyectsService.saveProyect(this.proyect).toPromise();
+        console.log('Proyecto guardado:', resp);
+
+        if (resp && resp.idP) {
+          const idP = resp.idP.toString();
+          this.saveNewProyectxColab(idP);
+        }
+        this.getUserxUser();
+      } catch (err) {
+        console.error('Error al guardar proyecto:', err);
+      }
+    }
+  }
+
+  async updateProyect() {
     if (this.proyect.idP) {
       const number: number = Number(this.proyect.idP);
 
@@ -170,8 +159,9 @@ export class CreateProyectosComponent implements OnInit {
             await this.proyectsService.deletePColaborador(this.idP, idU).toPromise();
           }
         }
-
         await this.saveNewProyectxColab(number.toString());
+        this.getUserxUser();
+        this.getColaboradores();
 
         this.router.navigate(['/proyects']);
       } catch (err) {

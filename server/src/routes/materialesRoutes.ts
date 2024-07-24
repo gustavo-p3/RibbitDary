@@ -13,7 +13,7 @@ class MaterialesRoutes{
         this.router.get('/', matriealesController.list); 
         this.router.get('/:idT', matriealesController.getList); 
         this.router.post('/', matriealesController.create);
-        this.router.put('/:idMt', matriealesController.delete);
+        this.router.delete('/:idMt', matriealesController.delete);
     }
 }
 

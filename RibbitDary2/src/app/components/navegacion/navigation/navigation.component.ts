@@ -12,7 +12,7 @@ export class NavigationComponent {
   usuario: any = [];
 
   constructor(private proyectsService: ProyectsService,
-    private route: ActivatedRoute, public router: Router) { }
+    private route: ActivatedRoute, public router: Router) {}
 
   ngOnInit(): void {
     const idU = this.route.snapshot.paramMap.get('idU');

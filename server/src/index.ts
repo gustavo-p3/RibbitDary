@@ -36,7 +36,6 @@ class Server {
         this.app.use('/api/usuario', usuarioRoutes);
         this.app.use('/api/materiales', materialesRoutes);
         this.app.use('/api', authRoutes); // Agregado
-
     }
 
     start(): void {

@@ -1,3 +1,9 @@
+
+<header><app-navigation *ngIf="router.url !== '/presentacion'"></app-navigation></header>
+<app-nav-nar-lat *ngIf="router.url !== '/presentacion' && router.url !== '/comentarios'
+&& router.url !== '/login'
+"></app-nav-nar-lat>
+
 <body>
     <div class="caja">
       <div class="contenedor">

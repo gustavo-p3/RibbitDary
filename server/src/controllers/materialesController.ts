@@ -26,7 +26,7 @@ class MatriealesController{
     
     public async create(req: Request, resp: Response) {
         try{
-            await pool.query('INSERT INTO material SET?', [req.body]);
+            await pool.query('INSERT INTO material SET ?', [req.body]);
             resp.json({ message: 'Material saved' });
         }catch(error){
             console.error(error);
@@ -37,7 +37,7 @@ class MatriealesController{
     public async delete(req: Request, resp: Response) {
         const {idMt} = req.params;
         try{
-            await pool.query('DELETE FROM material WHERE idMt =?', [idMt]);
+            await pool.query('DELETE FROM material WHERE idMt = ?', [idMt]);
             resp.json({ message: 'Material deleted' });
         }catch(err){{
             console.error(err);
