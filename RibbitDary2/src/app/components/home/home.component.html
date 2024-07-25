@@ -1,0 +1,36 @@
+<header>
+    <app-navigation></app-navigation>
+  </header>
+  <app-nav-nar-lat></app-nav-nar-lat>
+  
+  <body class="body">
+    <div class="bodyT">
+      <h1>Bienvenido</h1>
+      <h2>Tareas que tienes:</h2>
+      <div class="containerTa">
+        <div class="task-grid">
+          <div class="task-card" *ngFor="let tarea of tareas" [routerLink]="['/tareas', idU, tarea.idP]">
+            <div class="task-info">
+              <h2>{{tarea.nomTarea}}</h2>
+              <br>
+              <p><strong>Fecha Inicio:</strong> {{tarea.fechaI}}</p>
+            </div>
+            <div class="task-persons">
+              <h3>Persona encargada:</h3>
+              <div class="task-users">
+                <div *ngFor="let colab of colaboradorTareas[tarea.idColaborador]" class="task-user">
+                  <img [src]="colab.icono" alt="{{colab.nombres}}" />
+                  <span>{{colab.nombres}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="task-status">
+              <h3>Completado:</h3>
+              <input type="checkbox" id="completed-{{tarea.idTarea}}" name="completed-{{tarea.idTarea}}" [checked]="tarea.completado"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  

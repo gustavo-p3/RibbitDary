@@ -8,6 +8,7 @@ import { ProyectosComponent } from './components/proyects/proyectos/proyectos.co
 import { CreateProyectosComponent } from './components/proyects/create-proyectos/create-proyectos.component';
 import { CreateTareasComponent } from './components/proyects/create-tareas/create-tareas.component'; 
 import { NavigationComponent } from './components/navegacion/navigation/navigation.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -34,7 +35,11 @@ const routes: Routes = [
   {path: 'proyectos/:idU', component: ProyectosComponent},
   {path: 'crear-proyectos', component:CreateProyectosComponent},
   {path: 'crear-proyectos/:idU', component:CreateProyectosComponent},
-  {path: 'edit-proyectos/edit/:idU/:idP', component:CreateProyectosComponent}
+  {path: 'edit-proyectos/edit/:idU/:idP', component:CreateProyectosComponent},
+
+
+  //Home
+  {path: 'home/:idU', component: HomeComponent},
 ];
 
 @NgModule({

@@ -15,6 +15,7 @@ import { ProyectosComponent } from './components/proyects/proyectos/proyectos.co
 import { ProyectsService } from './services/proyects.service';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
 
 // Define tus rutas aquí
 const routes: Routes = [
@@ -35,7 +36,8 @@ const routes: Routes = [
     NavNarLatComponent,
     CreateProyectosComponent,
     CreateTareasComponent,
-    ProyectosComponent
+    ProyectosComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

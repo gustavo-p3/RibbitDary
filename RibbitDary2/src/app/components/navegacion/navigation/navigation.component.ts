@@ -23,7 +23,6 @@ export class NavigationComponent {
 
   }
 
-
   getUsuario(idU: string) {
     this.proyectsService.getUsuario(idU).subscribe(
       resp => {

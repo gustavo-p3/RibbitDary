@@ -18,10 +18,11 @@ CREATE TABLE Usuario (
     usuario VARCHAR(20) NOT NULL,
     aPuP VARCHAR(20) NOT NULL,
     aPuM VARCHAR(20),
-    contraseña VARCHAR(20) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     nombres VARCHAR(30),
     idTipo TINYINT NOT NULL,
-    CONSTRAINT idTipo_FK FOREIGN KEY (idTipo) REFERENCES TipoUsuario(idTipo)
+    CONSTRAINT idTipo_FK FOREIGN KEY (idTipo) REFERENCES TipoUsuario(idTipo),
+    CONSTRAINT unique_usuario UNIQUE (usuario)
 );
 
 -- Crear tabla UserXUser
@@ -85,7 +86,6 @@ CREATE TABLE Proyecto (
     fechaI DATE NOT NULL,
     fechaF DATE NOT NULL,
     notas VARCHAR(255),
-    progreso INT,
     idU INT NOT NULL,
     idType INT NOT NULL,
     CONSTRAINT idU_Pro_FK FOREIGN KEY (idU) REFERENCES Usuario(idU),
@@ -96,7 +96,6 @@ CREATE TABLE Proyecto (
 CREATE TABLE ProyectXColab (
     idColaboradores INT NOT NULL,
     idP INT NOT NULL,
-    progreso INT,
     PRIMARY KEY (idColaboradores, idP),
     CONSTRAINT idColab_Pro_FK FOREIGN KEY (idColaboradores) REFERENCES Usuario(idU),
     CONSTRAINT idP_Pro_FK FOREIGN KEY (idP) REFERENCES Proyecto(idP)
@@ -122,5 +121,7 @@ CREATE TABLE Material (
     idMt INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nombreMaterial VARCHAR(50) NOT NULL,
     idT INT NOT NULL,
-    CONSTRAINT idT_FK FOREIGN KEY (idT) REFERENCES Tarea(idT)
+    idP INT NOT NULL,
+    CONSTRAINT idT_FK FOREIGN KEY (idT) REFERENCES Tarea(idT),
+    CONSTRAINT idP_Mat_FK FOREIGN KEY (idP) REFERENCES Proyecto(idP)
 );

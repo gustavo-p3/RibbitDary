@@ -25,7 +25,8 @@ class AuthController {
                 if (!user) {
                     return res.status(401).json({ message: 'Usuario no encontrado' });
                 }
-                if (!bcryptjs_1.default.compare(password, user.password)) {
+                const coinciden = yield bcryptjs_1.default.compare(password, user.password);
+                if (!coinciden) {
                     return res.status(401).json({ message: 'Contraseña incorrecta' });
                 }
                 // Autenticación exitosa

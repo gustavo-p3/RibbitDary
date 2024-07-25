@@ -80,8 +80,8 @@ export class ProyectsService {
   }
 
   // Tareas
-  getTareas(): Observable<Tarea[]> {
-    return this.http.get<Tarea[]>(`${this.API_BASE_URL}/tareas`);
+  getTareas(idU: string): Observable<Tarea[]> {
+    return this.http.get<Tarea[]>(`${this.API_BASE_URL}/tareas/${idU}`);
   }
 
   getTareaP(idU: string, idP: string): Observable<Tarea> {

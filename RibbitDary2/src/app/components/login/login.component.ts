@@ -19,13 +19,16 @@ export class LoginComponent {
         const userId = response.userId;
         if (userId) {
           // Redirige al usuario a la ruta con su ID
-          this.router.navigate([`/proyectos/${userId}`]);
+          this.router.navigate([`/home/${userId}`]);
         } else {
           console.error('ID de usuario no recibido');
         }
       },
       error => {
+        alert('Tus datos de usuario son icorrectos');
         console.error('Error de login', error);
+        this.username  = '';
+        this.password = '';
       }
     );
   }

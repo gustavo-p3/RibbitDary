@@ -1,17 +1,19 @@
 <body >
-    <div class="sidebar">
+    <div class="sidebar" *ngFor="let user of usuario">
       <ul>
         <li>
-          <a href="/proyectos"><i class="fas fa-home"></i> Home</a>
+          <a [routerLink]="['/home', user.idU]"><i class="fas fa-home"></i> Home</a>
         </li>
-        <li>
-          <a href="/proyectos"
+        <li >
+          <a [routerLink]="['/proyectos', user.idU]"
             ><i class="fas fa-project-diagram"></i> Proyectos</a
           >
         </li>
+        <!--
         <li>
           <a href="/tareas"><i class="fas fa-tasks"></i> Tareas</a>
         </li>
+        -->
         <li>
           <a href="#socios"><i class="fas fa-users"></i> Socios</a>
         </li>

@@ -8,7 +8,7 @@ class TareasRoutes {
         this.config();
     }
     config() {
-        this.router.get('/', tareasController_1.tareasController.list);
+        this.router.get('/:idU', tareasController_1.tareasController.list);
         //Creando una ruta para mi aplicación del servidor para la 
         //ruta inicial y se devuelve el mensaje Hello
         this.router.post('/', tareasController_1.tareasController.create);
