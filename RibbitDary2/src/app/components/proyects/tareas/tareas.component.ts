@@ -1,6 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProyectsService } from '../../../services/proyects.service';
+import { Tarea } from '../../../models/Proyect';
 
 @Component({
   selector: 'app-tareas',
@@ -15,6 +16,9 @@ export class TareasComponent implements OnInit {
   materiales: any = {};
   colaboradorTareas: any = {};
   user: any = [];
+  estatus: Tarea = {
+    estatus: ''
+  }
 
   idP: string | null = null;
   idU: string | null = null;
@@ -38,7 +42,7 @@ export class TareasComponent implements OnInit {
     }
   }
 
-  getUser(idU : string){
+  getUser(idU: string) {
     if (idU) {
       this.proyectsService.getUsuario(idU).subscribe(
         resp => {
@@ -113,6 +117,16 @@ export class TareasComponent implements OnInit {
         this.getTareas();
       },
       err => console.error(err)
+    );
+  }
+
+
+  updateEstatus(tarea: any) {
+    this.proyectsService.estatusTarea(tarea.idT, { estatus: tarea.estatus }).subscribe(
+      resp => {
+        console.log('Tarea actualizada:', resp);
+      },
+      err => console.error('Error al actualizar tarea:', err)
     );
   }
 }

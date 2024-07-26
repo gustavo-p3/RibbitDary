@@ -22,6 +22,7 @@ class TareasController {
                 SELECT *
                 FROM tarea
                 WHERE idP = ? AND (idU = ? OR idColaborador = ?)
+                ORDER BY fechaI
             `, [idP, idU, idU]);
 
             resp.json(tareas);
@@ -71,6 +72,12 @@ class TareasController {
         } else {
             resp.status(404).json({ message: 'Tarea not found' });
         }
+    }
+
+    public async estusTarea(req: Request, resp: Response){
+        const { idT } = req.params;
+        await pool.query('UPDATE tarea SET ? WHERE idT = ?', [req.body, idT]);
+        resp.json({ message: 'Updating a Tarea ' + req.params.id });
     }
 }
 

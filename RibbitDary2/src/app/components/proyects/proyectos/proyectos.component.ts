@@ -27,18 +27,7 @@ export class ProyectosComponent implements OnInit {
     this.getProyects();
   }
 
-  deleteProyect(idP: string) {
-    console.log(idP);
-
-    this.proyectsService.deleteProyect(idP).subscribe(
-      resp => {
-        console.log(resp);
-        this.getProyects();
-      },
-      err => console.error(err)
-    );
-  }
-
+ 
   getProyects() {
     this.idU = this.route.snapshot.paramMap.get('idU');
 
@@ -79,7 +68,7 @@ export class ProyectosComponent implements OnInit {
   getTipoProyecto(idType : string) {
       this.proyectsService.getTipoproyecto(idType).subscribe(
         resp => {
-          this.tipoProyecto = resp;
+          this.tipoProyecto[idType] = resp;
         },
         err => console.error('Error al obtener usuario:', err)
       );
@@ -104,6 +93,20 @@ export class ProyectosComponent implements OnInit {
       this.getProyects();
     }
   }
+
+  //Borrar proyectos
+  deleteProyect(idP: string) {
+    console.log(idP);
+
+    this.proyectsService.deleteProyect(idP).subscribe(
+      resp => {
+        console.log(resp);
+        this.getProyects();
+      },
+      err => console.error(err)
+    );
+  }
+
 
   
 }

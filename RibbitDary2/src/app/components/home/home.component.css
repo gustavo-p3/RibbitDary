@@ -20,6 +20,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 300px;
+    font-family: 'Roboto', sans-serif; /* Fuente moderna */
   }
   
   .task-card:hover {
@@ -31,13 +33,12 @@
     margin: 0;
     font-size: 1.5em;
     color: #00796b; /* Azul pastel */
-    font-family: 'Roboto', sans-serif; /* Fuente moderna */
   }
   
   .task-info p {
     margin: 5px 0;
     color: #004d40; /* Verde oscuro */
-    font-family: 'Roboto', sans-serif; /* Fuente moderna */
+
   }
   
   .task-persons {
@@ -72,6 +73,7 @@
   .task-status {
     margin-top: 10px;
     display: flex;
+    gap: 10px;
   }
   
   .bodyT h1, h2 {

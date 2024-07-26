@@ -25,19 +25,26 @@ class ProyectsController {
         return __awaiter(this, void 0, void 0, function* () {
             const { idU } = req.params;
             try {
-                const proyectos = yield database_1.default.query(`
-                SELECT proyecto.* 
-                FROM proyecto 
-                WHERE proyecto.idU = ?
-    
-                UNION
-    
-                SELECT proyecto.* 
-                FROM proyecto 
-                INNER JOIN proyectxcolab 
-                ON proyecto.idP = proyectxcolab.idP 
-                WHERE proyectxcolab.idColaborador = ?`, [idU, idU]);
-                resp.json(proyectos);
+                const [checar] = yield database_1.default.query('SELECT * FROM userxuser WHERE idColaborador = ?', [idU]);
+                if (checar) { // Verificar si hay resultados
+                    const proyectos = yield database_1.default.query(`
+                    SELECT proyecto.* 
+                    FROM proyecto 
+                    INNER JOIN proyectxcolab 
+                    ON proyecto.idP = proyectxcolab.idP 
+                    WHERE proyectxcolab.idColaborador = ?
+                    ORDER BY fechaI
+                    `, [idU]);
+                    resp.json(proyectos);
+                }
+                else {
+                    const proyectos = yield database_1.default.query(`
+                    SELECT proyecto.* 
+                    FROM proyecto 
+                    WHERE proyecto.idU = ?
+                    ORDER BY fechaI`, [idU]);
+                    resp.json(proyectos);
+                }
             }
             catch (error) {
                 console.error(error);
@@ -108,21 +115,28 @@ class ProyectsController {
             const { idU } = req.params; // idU es el primer parámetro
             const { b } = req.params; // b es el segundo parámetro
             try {
-                // Buscar proyectos del usuario y los proyectos donde el usuario es colaborador
-                const proyectos = yield database_1.default.query(`
-                SELECT proyecto.* 
-                FROM proyecto 
-                WHERE proyecto.idU = ? AND proyecto.nameProyect LIKE ?
-        
-                UNION
-        
-                SELECT proyecto.* 
-                FROM proyecto 
-                INNER JOIN proyectxcolab 
-                ON proyecto.idP = proyectxcolab.idP 
-                WHERE proyectxcolab.idColaborador = ? AND proyecto.nameProyect LIKE ?`, [idU, `%${b}%`, idU, `%${b}%`]);
-                console.log('Proyectos encontrados:', proyectos); // Log para depuración
-                resp.json(proyectos);
+                const [checar] = yield database_1.default.query('SELECT * FROM userxuser WHERE idColaborador = ?', [idU]);
+                if (checar) { // Verificar si hay resultados
+                    const proyectos = yield database_1.default.query(`
+                    SELECT proyecto.* 
+                    FROM proyecto 
+                    INNER JOIN proyectxcolab 
+                    ON proyecto.idP = proyectxcolab.idP 
+                    WHERE proyectxcolab.idColaborador = ? AND proyecto.nameProyect LIKE ?
+                    ORDER BY fechaI
+                    `, [idU, `%${b}%`]);
+                    resp.json(proyectos);
+                    console.log('Proyectos encontrados:', proyectos); // Log para depuración
+                }
+                else {
+                    const proyectos = yield database_1.default.query(`
+                    SELECT proyecto.* 
+                    FROM proyecto 
+                    WHERE proyecto.idU = ? AND proyecto.nameProyect LIKE ?
+                    ORDER BY fechaI`, [idU, `%${b}%`]);
+                    resp.json(proyectos);
+                    console.log('Proyectos encontrados:', proyectos); // Log para depuración
+                }
             }
             catch (error) {
                 console.error('Error en la búsqueda:', error);

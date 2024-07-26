@@ -102,6 +102,12 @@ export class CreateTareasComponent implements OnInit {
     }
   }
 
+  volver(){
+    const idP = this.route.snapshot.paramMap.get('idP');
+    const idU = this.route.snapshot.paramMap.get('idU');
+    this.router.navigate([`/tareas/${idU}/${idP}`]);
+  }
+
   //Añafir y editar, y gurar cosas y borrar
   addMaterial() {
     if (this.newMaterial) {
@@ -132,6 +138,8 @@ export class CreateTareasComponent implements OnInit {
           const idT = resp.idT.toString();
           this.saveNewMaterials(idT, idP);
         }
+
+        this.volver();
       } catch (err) {
         console.error('Error al guardar tarea:', err);
       }
@@ -175,6 +183,8 @@ export class CreateTareasComponent implements OnInit {
       }
 
       this.saveNewMaterials(number.toString(), number2.toString());
+      
+      this.volver();
     } catch (err) {
       console.error('Error al actualizar la tarea:', err);
     }

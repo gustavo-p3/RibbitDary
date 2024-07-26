@@ -12,7 +12,7 @@
               <h2>Tarea:</h2>
               <p>{{tarea.nomTarea}}</p>
               <h2>Fecha:</h2>
-              <p>{{tarea.fechaI}}</p>
+              <p>{{tarea.fechaI | date:'dd/MM/yyyy'}}</p>
               <h2>Descripcion:</h2>
               <p>{{tarea.descripcion}}</p>
             </div>
@@ -25,7 +25,7 @@
               </ul>
               <div>
                 <h2>Fecha de Fin:</h2>
-                <p>{{tarea.fechaF}}</p>
+                <p>{{tarea.fechaF | date:'dd/MM/yyyy'}}</p>
               </div>
             </div>
             <div class="container-Tarea-Div3">
@@ -40,7 +40,11 @@
               </div>
               <div class="users">
                 <h2>Completado:</h2>
-                <input type="checkbox" id="completed" name="completed" />
+                <input type="checkbox" 
+                       id="completed" 
+                       name="completed" 
+                       [(ngModel)]="tarea.estatus" 
+                       (change)="updateEstatus(tarea)">
               </div>
             </div>
           </div>

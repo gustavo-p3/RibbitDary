@@ -88,6 +88,11 @@ export class CreateProyectosComponent implements OnInit {
     }
   }
 
+  volver(){
+    this.idU = this.route.snapshot.paramMap.get('idU');
+    this.router.navigate([`/proyectos/${this.idU}`]);
+  }
+
   //Guardar cosas
   toggleColaboradorSeleccionado(idColaborador: string, event: Event) {
     const isChecked = (event.target as HTMLInputElement).checked;
@@ -139,6 +144,7 @@ export class CreateProyectosComponent implements OnInit {
           this.saveNewProyectxColab(idP);
         }
         this.getUserxUser();
+        this.volver();
       } catch (err) {
         console.error('Error al guardar proyecto:', err);
       }
@@ -163,7 +169,8 @@ export class CreateProyectosComponent implements OnInit {
         this.getUserxUser();
         this.getColaboradores();
 
-        this.router.navigate(['/proyects']);
+        this.volver();
+
       } catch (err) {
         console.error('Error al actualizar el proyecto:', err);
       }

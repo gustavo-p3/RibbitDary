@@ -34,6 +34,7 @@ class TareasController {
                 SELECT *
                 FROM tarea
                 WHERE idP = ? AND (idU = ? OR idColaborador = ?)
+                ORDER BY fechaI
             `, [idP, idU, idU]);
                 resp.json(tareas);
             }
@@ -84,6 +85,13 @@ class TareasController {
             else {
                 resp.status(404).json({ message: 'Tarea not found' });
             }
+        });
+    }
+    estusTarea(req, resp) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { idT } = req.params;
+            yield database_1.default.query('UPDATE tarea SET ? WHERE idT = ?', [req.body, idT]);
+            resp.json({ message: 'Updating a Tarea ' + req.params.id });
         });
     }
 }

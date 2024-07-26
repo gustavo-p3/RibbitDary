@@ -111,6 +111,7 @@ CREATE TABLE Tarea (
     idU INT NOT NULL,
     idColaboradores INT NOT NULL,
     idP INT NOT NULL,
+    estatus BOOLEAN,
     CONSTRAINT idU_Tar_FK FOREIGN KEY (idU) REFERENCES Usuario(idU),
     CONSTRAINT idColab_Tar_FK FOREIGN KEY (idColaboradores) REFERENCES Usuario(idU),
     CONSTRAINT idP_Tar_FK FOREIGN KEY (idP) REFERENCES Proyecto(idP)

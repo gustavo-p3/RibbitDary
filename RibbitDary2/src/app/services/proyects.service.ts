@@ -100,8 +100,12 @@ export class ProyectsService {
     return this.http.delete<Tarea>(`${this.API_BASE_URL}/tareas/${idT}`);
   }
 
-  updateTarea(idT: number, updatedTarea: Tarea): Observable<Proyect> {
-    return this.http.put<Proyect>(`${this.API_BASE_URL}/tareas/${idT}`, updatedTarea);
+  updateTarea(idT: number, updatedTarea: Tarea): Observable<Tarea> {
+    return this.http.put<Tarea>(`${this.API_BASE_URL}/tareas/${idT}`, updatedTarea);
+  }
+
+  estatusTarea(idT: number, updatedTarea: Tarea): Observable<Tarea> {
+    return this.http.put<Tarea>(`${this.API_BASE_URL}/tareas/estatusTarea/${idT}`, updatedTarea);
   }
 
 

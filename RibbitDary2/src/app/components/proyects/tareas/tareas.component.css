@@ -94,24 +94,25 @@ button:active {
 }
 
 .container-Tarea-Div1 h2 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 .container-Tarea-Div1 p {
-    font-size: 1em;
+    font-size: 1.05em;
 }
 
 /*Div2*/
 .container-Tarea-Div2 {
-    width: 27%;
+    width: 26%;
 }
 
 .container-Tarea-Div2 h2 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 .container-Tarea-Div2 ul {
-    font-size: 0.9em;
+    font-size: 1em;
+    margin-left: -10%;
 }
 
 /*Div3*/

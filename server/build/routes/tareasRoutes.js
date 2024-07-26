@@ -16,6 +16,8 @@ class TareasRoutes {
         this.router.put('/:idT', tareasController_1.tareasController.update);
         this.router.get('/:idU/:idP/:idT', tareasController_1.tareasController.getOne);
         this.router.get('/:idU/:idP', tareasController_1.tareasController.listP);
+        //Para actualizar el estatus de la tarea
+        this.router.put('/estatusTarea/:idT', tareasController_1.tareasController.estusTarea);
     }
 }
 const tareasRoutes = new TareasRoutes;

@@ -18,6 +18,7 @@ export interface Proyect {
     fechaI?: string,
     descripcion?: string,
     fechaF?: string,
+    estatus?: string,
     idU?: string,
     idColaborador?: string,
   }
