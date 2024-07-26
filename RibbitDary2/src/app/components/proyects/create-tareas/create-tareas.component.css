@@ -12,7 +12,7 @@
 .contentForm{
     display: inline;
     width: 70%;
-    background-image: url('../../../../assets/img/fondo-Tareas.jpg');
+    background-image: url('../../../../assets/img/Imagenes_RibbitDary/fondo-cuadros-azules.jpg');
     background-size: cover;
     background-position: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
@@ -55,7 +55,7 @@
 /*Contenido de las fechas*/
 .contTareasFechas{
     display: flex;
-    gap: 50%;
+    gap: 45%;
     margin-top: 10px;
 }
 

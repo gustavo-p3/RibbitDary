@@ -12,7 +12,7 @@
 /*Informacion del proyecto*/
 .cont-Proy-Info{
     width: 70%;
-    background-image: url('../../../../assets/img/fondo-Proyectos.jpg');
+    background-image: url('../../../../assets/img/Imagenes_RibbitDary/fondo-cuadros-verdes-gris.jpg');
     background-size: cover;
     background-position: center;
     border-radius: 10px;
@@ -86,13 +86,16 @@
 }
 .cont-Col-Info-Pro h3{
     font-size: 1em;
-    color: white;
     text-align: center;
 }
 
 .cont-Col-Info-Pro{
     border-radius: 10px;
-    background-color: #b45050a8;
+    background-image: url('../../../../assets/img/Imagenes_RibbitDary/fondo-cuadros-cafes.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    color: white;
     height: 75%;
     padding: 1% 0% 4% 6%;
 }
@@ -174,51 +177,6 @@
 
 .search-input {
   width: 100%;
-  padding: 8px; /* Ajustar el tamaño del relleno */
-  border: 1px solid #28a745;
-  border-radius: 4px 0 0 4px;
-  font-size: 14px; /* Reducir el tamaño de la fuente */
-  color: #155724;
-}
-
-.search-button {
-  background-color: #28a745;
-  border: none;
-  padding: 8px; /* Ajustar el tamaño del relleno */
-  border-radius: 0 4px 4px 0;
-  cursor: pointer;
-  color: white;
-}
-
-.search-button i {
-  font-size: 14px; /* Reducir el tamaño del icono */
-}
-
-/* Agrega estos estilos si deseas hacer la barra de búsqueda y el botón responsivos */
-@media (max-width: 768px) {
-  .search-form {
-    flex-direction: column;
-  }
-
-  .search-input {
-    width: 100%;
-    border-radius: 4px;
-    margin-bottom: 10px;
-  }
-
-  .search-button {
-    border-radius: 4px;
-    width: 100%;
-  }
-}
-/* Añadir estos estilos a tu archivo CSS */
-.search-form {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.search-input {
   padding: 8px; /* Ajustar el tamaño del relleno */
   border: 1px solid #28a745;
   border-radius: 4px 0 0 4px;

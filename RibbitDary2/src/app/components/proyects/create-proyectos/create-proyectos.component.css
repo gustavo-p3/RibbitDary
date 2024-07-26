@@ -46,7 +46,7 @@
 /*Contenido del proyecto*/
 
 .contProyecto{
-    background-image: url('../../../../assets/img/fondo-Proyectos.jpg');
+    background-image: url('../../../../assets/img/Imagenes_RibbitDary/fondo-cuadros-verdes-blancos.jpg');
     background-size: cover;
     background-position: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
@@ -57,8 +57,8 @@
     padding: 3%;
     display: grid;
     flex-direction: column;
-
 }
+
 
 /*Contenido de las fechas*/
 .contProyectoFechas{
@@ -191,10 +191,11 @@
   
 /*Notas*/
 .notas-container {
-    background-color: #00995e;
+    background-image: url('../../../../assets/img/Imagenes_RibbitDary/fondo-cuadros-amarillos.jpg');
+    background-size: cover;
+    background-position: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
     padding: 1%;
-
     border-radius: 20px;
     margin-bottom: 20px;
     width: 100%;
