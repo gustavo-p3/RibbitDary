@@ -18,10 +18,10 @@ const database_1 = __importDefault(require("../database")); // Asegúrate de que
 class AuthController {
     login(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { username, password } = req.body;
+            const { correo, password } = req.body;
             try {
                 // Buscar al usuario en la base de datos
-                const [user] = yield database_1.default.query('SELECT * FROM usuario WHERE usuario = ?', [username]);
+                const [user] = yield database_1.default.query('SELECT * FROM usuario WHERE correo = ?', [correo]);
                 if (!user) {
                     return res.status(401).json({ message: 'Usuario no encontrado' });
                 }

@@ -16,6 +16,7 @@ export class CreateTareasComponent implements OnInit {
     descripcion: '',
     fechaF: '',
     idColaborador: 'opcion1',
+    estatus:'No iniciada'
   };
 
   newMaterial: string = '';

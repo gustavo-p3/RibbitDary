@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Proyect, Tarea, Proyectxcolab, Material } from '../models/Proyect';
 
 @Injectable({
@@ -21,8 +21,8 @@ export class ProyectsService {
     return this.http.get<string[]>(`${this.API_BASE_URL}/usuario/${idU}`);
   }
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post<any>(this.loginUrl, { username, password });
+  login(correo: string, password: string): Observable<any> {
+    return this.http.post<any>(this.loginUrl, { correo, password });
   }
 
 

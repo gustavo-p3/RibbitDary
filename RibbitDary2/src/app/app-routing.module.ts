@@ -5,47 +5,41 @@ import { PresentacionComponent } from './components/presentacion/presentacion.co
 import { TareasComponent } from './components/proyects/tareas/tareas.component';
 import { ComentariosComponent } from './components/comentarios/comentarios.component';
 import { ProyectosComponent } from './components/proyects/proyectos/proyectos.component';
-import { CreateProyectosComponent } from './components/proyects/create-proyectos/create-proyectos.component';
+import { CreateProyectosComponent } from './components/proyects/create-proyectos/create-proyectos.component'; 
 import { CreateTareasComponent } from './components/proyects/create-tareas/create-tareas.component'; 
-import { NavigationComponent } from './components/navegacion/navigation/navigation.component';
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
-    path : '',
-    redirectTo : '/presentacion',
-    pathMatch : 'full'
+    path: '',
+    redirectTo: '/presentacion',
+    pathMatch: 'full'
   },
 
-  //Presentacion
-  {path:'presentacion', component: PresentacionComponent},
+  // Presentacion
+  { path: 'presentacion', component: PresentacionComponent },
 
-  //Routas de tareas
-  { path: 'tareas/:idU/:idP', component: TareasComponent},
-  //{ path: 'tareas', component: TareasComponent},
+  // Rutas de tareas
+  { path: 'tareas/:idU/:idP', component: TareasComponent },
   { path: 'crear-tareas/:idU/:idP', component: CreateTareasComponent },
-  {path: 'edit-tarea/edit/:idU/:idP/:idT', component:CreateTareasComponent},
+  { path: 'edit-tarea/edit/:idU/:idP/:idT', component: CreateTareasComponent },
 
-  //Comentarios
-  {path: 'comentarios', component: ComentariosComponent},
-  
-  //Rutas Proyectos
-  //{path: 'proyectos', component: ProyectosComponent},
-  {path: 'proyectos/:idU', component: ProyectosComponent},
-  {path: 'crear-proyectos', component:CreateProyectosComponent},
-  {path: 'crear-proyectos/:idU', component:CreateProyectosComponent},
-  {path: 'edit-proyectos/edit/:idU/:idP', component:CreateProyectosComponent},
+  // Comentarios
+  { path: 'comentarios', component: ComentariosComponent },
 
+  // Rutas Proyectos
+  { path: 'proyectos/:idU', component: ProyectosComponent },
+  { path: 'crear-proyectos', component: CreateProyectosComponent },
+  { path: 'crear-proyectos/:idU', component: CreateProyectosComponent },
+  { path: 'edit-proyectos/edit/:idU/:idP', component: CreateProyectosComponent },
 
-  //Home
-  {path: 'home/:idU', component: HomeComponent},
+  // Home
+  { path: 'home/:idU', component: HomeComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { 
-  
-}
+export class AppRoutingModule { }

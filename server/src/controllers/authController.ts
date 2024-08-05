@@ -4,11 +4,11 @@ import pool from '../database'; // Asegúrate de que esta ruta sea correcta
 
 class AuthController {
     public async login(req: Request, res: Response) {
-        const { username, password } = req.body;
+        const { correo, password } = req.body;
         
         try {
             // Buscar al usuario en la base de datos
-            const [user] = await pool.query('SELECT * FROM usuario WHERE usuario = ?', [username]);
+            const [user] = await pool.query('SELECT * FROM usuario WHERE correo = ?', [correo]);
 
             if (!user) {
                 return res.status(401).json({ message: 'Usuario no encontrado' });
