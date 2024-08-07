@@ -74,11 +74,12 @@ class TareasController {
         }
     }
 
-    public async estusTarea(req: Request, resp: Response){
+    public async estusTarea(req: Request, resp: Response) {
         const { idT } = req.params;
         await pool.query('UPDATE tarea SET ? WHERE idT = ?', [req.body, idT]);
         resp.json({ message: 'Updating a Tarea ' + req.params.id });
     }
+    
 }
 
 export const tareasController = new TareasController();

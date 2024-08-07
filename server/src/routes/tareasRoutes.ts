@@ -20,6 +20,7 @@ class TareasRoutes{
 
         //Para actualizar el estatus de la tarea
         this.router.put('/estatusTarea/:idT', tareasController.estusTarea);
+
     }
 }
 

@@ -10,7 +10,11 @@ import { ProyectsService } from '../../services/proyects.service';
 export class HomeComponent implements OnInit  {
 
  @HostBinding('class') classes = 'row';
-  tareas: any = [];
+
+  tareasUrgentes: any = [];
+  tareasMedias: any = [];
+  tareasNoUrgentes: any = [];
+  tareasVencidas: any = [];
   materiales: any = {};
   colaboradorTareas: any = {};
   user: any = [];
@@ -51,15 +55,51 @@ export class HomeComponent implements OnInit  {
     this.idU = this.route.snapshot.paramMap.get('idU');
 
     if (this.idU) {
-      this.proyectsService.getTareas(this.idU).subscribe(
+      //Solo Tareas Urgentes
+      this.proyectsService.getTareasUrgentes(this.idU).subscribe(
         resp => {
-          this.tareas = resp;
-          this.tareas.forEach((tarea: any) => {
+          this.tareasUrgentes = resp;
+          this.tareasUrgentes.forEach((tarea: any) => {
             this.getUsuario(tarea.idColaborador);
           });
         },
         err => console.error('Error al obtener tareas:', err)
       );
+
+      //Solo Tareas Medias
+      this.proyectsService.getTareasMedias(this.idU).subscribe(
+        resp => {
+          this.tareasMedias = resp;
+          this.tareasMedias.forEach((tarea: any) => {
+            this.getUsuario(tarea.idColaborador);
+          });
+        },
+        err => console.error('Error al obtener tareas:', err)
+      );
+      //Solo Tareas Urgentes
+      this.proyectsService.getTareasNoUrgentes(this.idU).subscribe(
+        resp => {
+          this.tareasNoUrgentes = resp;
+          this.tareasNoUrgentes.forEach((tarea: any) => {
+            this.getUsuario(tarea.idColaborador);
+          });
+        },
+        err => console.error('Error al obtener tareas:', err)
+      );
+      //Solo Tareas Vencidas
+      this.proyectsService.getTareasVencidas(this.idU).subscribe(
+        resp => {
+          this.tareasVencidas = resp;
+          this.tareasVencidas.forEach((tarea: any) => {
+            this.getUsuario(tarea.idColaborador);
+          });
+        },
+        err => console.error('Error al obtener tareas:', err)
+      );
+
+
+
+
     } else {
       console.error('No se pudo obtener el idP o idU de la ruta.');
     }

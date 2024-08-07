@@ -66,7 +66,7 @@ export class ProyectsService {
     return this.http.put<Proyect>(`${this.API_BASE_URL}/proyects/${idP}`, updatedProyect);
   }
 
-  getProgreso(idP: string){
+  getProgreso(idP: string): Observable<any>{
     return this.http.get<any>(`${this.API_BASE_URL}/progreso/${idP}`);
   }
 
@@ -116,6 +116,24 @@ export class ProyectsService {
   estatusTarea(idT: number, updatedTarea: Tarea): Observable<Tarea> {
     return this.http.put<Tarea>(`${this.API_BASE_URL}/tareas/estatusTarea/${idT}`, updatedTarea);
   }
+
+  // Estado de tarea
+  getTareasUrgentes(idU: string): Observable<Tarea[]> {
+    return this.http.get<Tarea[]>(`${this.API_BASE_URL}/filtrado/tareasUrgentes/${idU}`);
+  }
+
+  getTareasMedias(idU: string): Observable<Tarea[]> {
+    return this.http.get<Tarea[]>(`${this.API_BASE_URL}/filtrado/tareasMedias/${idU}`);
+  }
+
+  getTareasNoUrgentes(idU: string): Observable<Tarea[]> {
+    return this.http.get<Tarea[]>(`${this.API_BASE_URL}/filtrado/tareasNoUrgentes/${idU}`);
+  }
+
+  getTareasVencidas(idU: string): Observable<Tarea[]> {
+    return this.http.get<Tarea[]>(`${this.API_BASE_URL}/filtrado/tareasVencidas/${idU}`);
+  }
+
 
 
 

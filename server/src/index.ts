@@ -11,6 +11,7 @@ import materialesRoutes from './routes/materialesRoutes';
 import authRoutes from './routes/authRoutes';
 import tipoProyectoRoutes from './routes/tipoProyectRoutes';
 import progresoRoutes from './routes/progresoRoutes';
+import filtradoTareasRoutes from './routes/filtradoTareasRoutes';
 
 class Server {
     public app: Application;
@@ -40,6 +41,7 @@ class Server {
         this.app.use('/api/tipoproyecto', tipoProyectoRoutes);
         this.app.use('/api', authRoutes); 
         this.app.use('/api/progreso', progresoRoutes);
+        this.app.use('/api/filtrado', filtradoTareasRoutes)
     }
 
     start(): void {
