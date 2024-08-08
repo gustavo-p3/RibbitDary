@@ -41,7 +41,18 @@ export interface Proyect {
     aPuP?: string,
     aPuM?: string,
     usuario?: string,
-    contraseña?: string,
+    password?: string,
+    idTipo?: string,
+    icono?: string
+  }
+  
+  export interface CreaSocio {
+    idU?: string,
+    nombres?: string,
+    aPuP?: string,
+    aPuM?: string,
+    usuario?: string,
+    password?: string,
     idTipo?: string,
     icono?: string
   }

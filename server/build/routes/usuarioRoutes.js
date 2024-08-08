@@ -10,6 +10,7 @@ class UsuarioRoutes {
     config() {
         this.router.get('/', usuarioController_1.usuarioController.list);
         this.router.get('/:idU', usuarioController_1.usuarioController.getOne);
+        this.router.post('/', usuarioController_1.usuarioController.create);
     }
 }
 const usuarioRoutes = new UsuarioRoutes;

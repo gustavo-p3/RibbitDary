@@ -5,7 +5,7 @@ import pool from '../database'
 class TipoProyectoController{
     public async proyectoTipo(req : Request, resp : Response){
         const {idType} = req.params;
-        const tipoProyecto = await pool.query('SELECT * FROM tipoproyecto WHERE idType = ?',[idType]);
+        const tipoProyecto = await pool.query('SELECT * FROM tipoproyecto WHERE idType = ?', [idType]);
         resp.json(tipoProyecto);
     }
 }

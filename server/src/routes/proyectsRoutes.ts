@@ -21,6 +21,9 @@ class ProyectsRoutes {
         // En tu archivo de enrutador (por ejemplo, `proyects.routes.ts`)
         this.router.get('/busqueda/:idU/:b', proyectsController.buscarProyecto);
 
+        //Obtener Progreso
+        this.router.get('/progreso/:idP', proyectsController.getProgreso);
+
     }
 }
 

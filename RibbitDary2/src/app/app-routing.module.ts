@@ -8,6 +8,9 @@ import { ProyectosComponent } from './components/proyects/proyectos/proyectos.co
 import { CreateProyectosComponent } from './components/proyects/create-proyectos/create-proyectos.component'; 
 import { CreateTareasComponent } from './components/proyects/create-tareas/create-tareas.component'; 
 import { HomeComponent } from './components/home/home.component';
+import { SociosComponent } from './components/usuarios/socios/socios.component';
+import { CrearSociosComponent } from './components/usuarios/crear-socios/crear-socios.component';
+import { CrearUsuarioComponent } from './components/usuarios/crear-usuarios/crear-usuarios.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -16,6 +19,11 @@ const routes: Routes = [
     redirectTo: '/presentacion',
     pathMatch: 'full'
   },
+  //Usuarios
+  {path:'socios', component: SociosComponent},
+  {path:'crear-socios', component: CrearSociosComponent},
+  {path: 'crear-usuarios', component: CrearUsuarioComponent},
+
 
   // Presentacion
   { path: 'presentacion', component: PresentacionComponent },
