@@ -144,20 +144,5 @@ class ProyectsController {
             }
         });
     }
-    getProgreso(req, resp) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const { idP } = req.params;
-            try {
-                const numeroTareas = yield database_1.default.query('SELECT COUNT(*) FROM Tarea WHERE idP =?', [idP]);
-                const numeroTareasCompletadas = yield database_1.default.query('SELECT COUNT(*) FROM Tarea WHERE idP = ? AND estatus = Terminada', [idP]);
-                const progreso = Math.round((numeroTareasCompletadas / numeroTareas) * 100);
-                resp.json(progreso);
-            }
-            catch (error) {
-                console.error('Error en el progreso:', error);
-                resp.status(500).json({ message: 'Error en el servidor' });
-            }
-        });
-    }
 }
 exports.proyectsController = new ProyectsController();

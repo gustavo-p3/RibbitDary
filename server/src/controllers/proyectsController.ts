@@ -140,20 +140,6 @@ class ProyectsController {
         }
     }
 
-    public async getProgreso(req: Request, resp: Response){
-        const { idP } = req.params;
-        try{
-            const numeroTareas = await pool.query('SELECT COUNT(*) FROM Tarea WHERE idP =?', [idP]);
-            const numeroTareasCompletadas = await pool.query('SELECT COUNT(*) FROM Tarea WHERE idP = ? AND estatus = Terminada', [idP]);
-            const progreso = Math.round((numeroTareasCompletadas / numeroTareas) * 100);
-            resp.json(progreso);
-        }catch(error){
-            console.error('Error en el progreso:', error);
-            resp.status(500).json({ message: 'Error en el servidor' });
-        }
-    }
-    
-
 }
 
 export const proyectsController = new ProyectsController();

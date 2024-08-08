@@ -15,6 +15,7 @@ export class ProyectosComponent implements OnInit {
   user: any = [];
   tipoProyecto: any = [];
   searchTerm: string = '';
+  progreso: any = [];
 
   constructor(
     private proyectsService: ProyectsService,
@@ -38,6 +39,7 @@ export class ProyectosComponent implements OnInit {
           this.proyects.forEach((proyect: any) => {
             this.getCreador(proyect.idU);
             this.getTipoProyecto(proyect.idType);
+            this.getProgreso(proyect.idP);
           });
         },
         err => console.error('Error al obtener proyectos:', err)
@@ -73,6 +75,15 @@ export class ProyectosComponent implements OnInit {
         err => console.error('Error al obtener usuario:', err)
       );
   }
+
+  getProgreso(idP : string) {
+    this.proyectsService.getProgreso(idP).subscribe(
+      resp => {
+        this.progreso[idP] = resp;
+      },
+      err => console.error('Error al obtener usuario:', err)
+    );
+}
 //Buscar Proyecto
   buscarProyecto() {
     const idU = this.route.snapshot.paramMap.get('idU');
@@ -93,7 +104,6 @@ export class ProyectosComponent implements OnInit {
       this.getProyects();
     }
   }
-
   //Borrar proyectos
   deleteProyect(idP: string) {
     console.log(idP);
@@ -107,6 +117,11 @@ export class ProyectosComponent implements OnInit {
     );
   }
 
-
+  getProgressColor(progreso: number): string {
+    // Convertir el porcentaje a un valor de color interpolado
+    const red = Math.max(255 - (progreso * 2.55), 0);   // De rojo (255, 0, 0) a amarillo-verde (255,255,0)
+    const green = Math.min(progreso * 2.55, 255);      // De rojo (255, 0, 0) a verde (0, 255, 0)
+    return `rgb(${red}, ${green}, 0)`; // El color en formato RGB
+  }
   
 }

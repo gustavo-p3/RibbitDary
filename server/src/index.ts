@@ -10,6 +10,7 @@ import userxuserRoutes from './routes/userxuserRoutes';
 import materialesRoutes from './routes/materialesRoutes';
 import authRoutes from './routes/authRoutes';
 import tipoProyectoRoutes from './routes/tipoProyectRoutes';
+import progresoRoutes from './routes/progresoRoutes';
 
 class Server {
     public app: Application;
@@ -38,6 +39,7 @@ class Server {
         this.app.use('/api/materiales', materialesRoutes);
         this.app.use('/api/tipoproyecto', tipoProyectoRoutes);
         this.app.use('/api', authRoutes); 
+        this.app.use('/api/progreso', progresoRoutes);
     }
 
     start(): void {

@@ -18,8 +18,6 @@ class ProyectsRoutes {
         this.router.get('/:idU/:idP', proyectsController_1.proyectsController.getOne);
         // En tu archivo de enrutador (por ejemplo, `proyects.routes.ts`)
         this.router.get('/busqueda/:idU/:b', proyectsController_1.proyectsController.buscarProyecto);
-        //Obtener Progreso
-        this.router.get('/progreso/:idP', proyectsController_1.proyectsController.getProgreso);
     }
 }
 const proyectsRoutes = new ProyectsRoutes;

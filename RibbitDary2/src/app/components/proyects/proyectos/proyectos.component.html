@@ -29,6 +29,14 @@
             <h2>Fecha de Fin:</h2>
             <p>{{proyect.fechaF | date:'dd/MM/yyyy'}}</p>
           </div>
+          <div *ngFor="let progres of progreso[proyect.idP]">
+            <p>{{progres.progreso}}%</p>
+            <div class="progress-bar-container">
+                <div class="progress-bar" [ngStyle]="{ 'width': progres.progreso + '%', 'background': getProgressColor(progres.progreso) }"></div>
+            </div>
+        </div>
+        
+        
         </div>
         <div>
           <div class="usersC" >

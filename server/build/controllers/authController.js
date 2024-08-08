@@ -21,7 +21,7 @@ class AuthController {
             const { correo, password } = req.body;
             try {
                 // Buscar al usuario en la base de datos
-                const [user] = yield database_1.default.query('SELECT * FROM usuario WHERE correo = ?', [correo]);
+                const [user] = yield database_1.default.query('SELECT * FROM usuario WHERE usuario = ?', [correo]);
                 if (!user) {
                     return res.status(401).json({ message: 'Usuario no encontrado' });
                 }

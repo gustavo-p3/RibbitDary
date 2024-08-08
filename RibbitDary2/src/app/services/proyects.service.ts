@@ -66,6 +66,10 @@ export class ProyectsService {
     return this.http.put<Proyect>(`${this.API_BASE_URL}/proyects/${idP}`, updatedProyect);
   }
 
+  getProgreso(idP: string){
+    return this.http.get<any>(`${this.API_BASE_URL}/progreso/${idP}`);
+  }
+
   //Tipo de proyecto
   getTipoproyecto(idType: string): Observable<string[]> {
     return this.http.get<string[]>(`${this.API_BASE_URL}/tipoproyecto/${idType}`);
