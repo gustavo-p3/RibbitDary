@@ -1,0 +1,37 @@
+<header>
+  <nav class="navbar2">
+    <ul class="nav-list2">
+      <li>
+        <a routerLink=".."><img src="../assets/img/Ribbit_Dary_Logo_SF.png" height="100px" /></a>
+      <li><h2>Ribbit Dary</h2></li>
+    </ul>
+
+
+
+    <div class="nav-info" >
+      <a routerLink="/comentarios">
+        <i class="fas fa-exclamation-triangle"></i>
+      </a>
+      <i class="fas fa-bell" routerLink="/politicas"></i>
+      <!--<button class="ready-button">Listo</button> -->
+      
+      <div class="nav-button-1" *ngIf="router.url !== '/login' && router.url !== '/crear-usuarios'">
+        <div>
+          <a [routerLink]="['/crear-proyectos']">
+            <button>Crear Proyecto</button>
+          </a>
+        </div>
+      </div>
+      
+      
+      <div  *ngIf="router.url !== '/login'&& router.url !== '/crear-usuarios'">
+        <div class="user-info" >
+        <img src="../../../../assets/img/Icon-User/icon-user-1.jpg" />
+        <p class="user-name">Pruebas</p>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
